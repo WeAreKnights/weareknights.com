@@ -21,7 +21,7 @@ layout: layouts/base.liquid
   </header>
 
   {% if image %}
-  <img class="post-hero" src="{{ image }}" alt="{{ title }}">
+  <img class="post-hero reveal" src="{{ image }}" alt="{{ title }}">
   {% endif %}
 
   <div class="post-content">
@@ -29,7 +29,7 @@ layout: layouts/base.liquid
   </div>
 
   {% if tags %}
-  <footer class="post-tags">
+  <footer class="post-tags reveal">
     {% for tag in tags %}
       {% if tag != "posts" %}
         <a class="tag-pill tag-pill-outline" href="/tags/{{ tag | slugify }}/">#{{ tag }}</a>

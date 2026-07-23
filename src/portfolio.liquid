@@ -6,7 +6,7 @@ permalink: /portfolio/
 ---
 <h1>Portfolio</h1>
 
-<div class="filter-bar" id="portfolio-filters">
+<div class="filter-bar reveal" id="portfolio-filters">
   <div class="filter-group" data-filter-group="designer">
     <span>Designer</span>
     <button type="button" class="filter-btn" data-filter-value="all" aria-pressed="true">All</button>
@@ -39,7 +39,7 @@ permalink: /portfolio/
 
 <div class="grid" id="portfolio-grid">
   {% for item in collections.portfolio %}
-  <div class="card portfolio-item" data-designer="{{ item.data.designer }}" data-category="{{ item.data.category | slugify }}">
+  <div class="card portfolio-item reveal reveal-item" data-designer="{{ item.data.designer }}" data-category="{{ item.data.category | slugify }}" style="--reveal-index: {{ forloop.index0 }}">
     <a href="{{ item.url }}">
       {% if item.data.image %}<img src="{{ item.data.image }}" alt="{{ item.data.title }}">{% endif %}
       <div class="card-body">

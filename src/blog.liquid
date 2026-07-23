@@ -8,7 +8,7 @@ permalink: /blog/
 
 <ul class="post-list">
   {% for post in collections.posts %}
-  <li class="post-list-item">
+  <li class="post-list-item reveal reveal-item" style="--reveal-index: {{ forloop.index0 }}">
     {% if post.data.image %}
     <a href="{{ post.url }}"><img class="post-thumb" src="{{ post.data.image }}" alt="{{ post.data.title }}"></a>
     {% endif %}

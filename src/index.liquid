@@ -7,12 +7,12 @@ title: Home
   <p>A two-person design studio run by Mitchell Knight and Tonya Knight. We build brand identities, web products, and print work that holds up over time.</p>
 </section>
 
-<section>
+<section class="reveal">
   <h2>Recent work</h2>
   <div class="grid">
     {% assign recent = collections.portfolio | reverse | slice: 0, 3 %}
     {% for item in recent %}
-    <div class="card">
+    <div class="card reveal reveal-item" style="--reveal-index: {{ forloop.index0 }}">
       <a href="{{ item.url }}">
         {% if item.data.image %}<img src="{{ item.data.image }}" alt="{{ item.data.title }}">{% endif %}
         <div class="card-body">
@@ -26,12 +26,12 @@ title: Home
   <p><a href="/portfolio/">View the full portfolio &rarr;</a></p>
 </section>
 
-<section>
+<section class="reveal">
   <h2>From the blog</h2>
   <ul class="post-list">
     {% assign recentPosts = collections.posts | slice: 0, 3 %}
     {% for post in recentPosts %}
-    <li class="post-list-item">
+    <li class="post-list-item reveal reveal-item" style="--reveal-index: {{ forloop.index0 }}">
       {% if post.data.image %}
       <a href="{{ post.url }}"><img class="post-thumb" src="{{ post.data.image }}" alt="{{ post.data.title }}"></a>
       {% endif %}
