@@ -56,11 +56,14 @@ a {
 }
 
 .site-title {
-  font-size: var(--font-size-4);
-  font-weight: var(--font-weight-8);
-  text-decoration: none;
-  color: var(--color-text);
-  letter-spacing: var(--font-letterspacing-1);
+  display: inline-flex;
+  align-items: center;
+}
+
+.site-logo {
+  display: block;
+  height: 28px;
+  width: auto;
 }
 
 .site-nav ul {

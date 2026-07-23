@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if title %}{{ title }} · {% endif %}{{ site.title }}</title>
   <meta name="description" content="{{ description | default: site.description }}">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/open-props.min.css">
   <link rel="stylesheet" href="/css/open-props.normalize.min.css">
   <link rel="stylesheet" href="/css/style.css">
@@ -12,7 +13,9 @@
 <body>
   <header class="site-header">
     <div class="wrap">
-      <a class="site-title" href="/">{{ site.title }}</a>
+      <a class="site-title" href="/">
+        <img class="site-logo" src="/img/logo.svg" alt="{{ site.title }}">
+      </a>
       <nav class="site-nav">
         <ul>
           {% for item in site.nav %}

@@ -10,6 +10,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "node_modules/open-props/open-props.min.css": "css/open-props.min.css" });
   eleventyConfig.addPassthroughCopy({ "node_modules/open-props/normalize.min.css": "css/open-props.normalize.min.css" });
   eleventyConfig.addPassthroughCopy("src/CNAME");
+  eleventyConfig.addPassthroughCopy("src/favicon.svg");
 
   eleventyConfig.setLiquidOptions({
     dynamicPartials: true,
