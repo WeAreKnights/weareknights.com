@@ -2,6 +2,7 @@
 title: Designing With Open Props
 date: 2026-06-18
 post_author: tonya
+image: /img/blog/post-2.svg
 categories:
   - Web
   - Process

@@ -20,6 +20,10 @@ layout: layouts/base.liquid
     {% endif %}
   </header>
 
+  {% if image %}
+  <img class="post-hero" src="{{ image }}" alt="{{ title }}">
+  {% endif %}
+
   <div class="post-content">
     {{ content }}
   </div>

@@ -2,6 +2,7 @@
 title: Branding That Lasts a Decade
 date: 2026-06-02
 post_author: mitchell
+image: /img/blog/post-1.svg
 categories:
   - Branding
 tags:

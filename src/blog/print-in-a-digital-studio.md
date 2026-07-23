@@ -2,6 +2,7 @@
 title: Making Room for Print in a Digital Studio
 date: 2026-07-05
 post_author: mitchell
+image: /img/blog/post-3.svg
 categories:
   - Branding
   - Print

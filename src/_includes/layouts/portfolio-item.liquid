@@ -12,5 +12,24 @@ layout: layouts/base.liquid
   <div class="post-content">
     {{ content }}
   </div>
+
+  {% if credits %}
+  <section class="credits">
+    <h2>Credits</h2>
+    <ul class="credits-list">
+      {% for credit in credits %}
+      <li>
+        <span class="credit-role">{{ credit.role }}</span>
+        {% if credit.url %}
+          <a href="{{ credit.url }}" target="_blank" rel="noopener noreferrer">{{ credit.name }}</a>
+        {% else %}
+          <span class="credit-name">{{ credit.name }}</span>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
   <p><a href="/portfolio/">&larr; Back to portfolio</a></p>
 </article>

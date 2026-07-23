@@ -41,11 +41,14 @@ A `CNAME` file (`src/CNAME`) is included for the `weareknights.com` custom domai
 title: Post Title
 date: 2026-01-01
 post_author: mitchell # or tonya, see src/_data/authors.json
+image: /img/blog/your-image.jpg # optional featured image
 categories: [Branding]
 tags: [strategy]
 excerpt: One-line summary shown in listings.
 ---
 ```
+
+`image` is optional. When present it's shown as a hero image on the post and as a thumbnail in the blog listing and the home page's "From the blog" section.
 
 **Portfolio project** — add a Markdown file to `src/portfolio/`:
 
@@ -56,5 +59,13 @@ designer: mitchell # or tonya
 category: Branding
 image: /img/portfolio/your-image.jpg
 order: 1
+credits: # optional, any number of entries
+  - role: Photography
+    name: Jasmine Ruiz
+    url: https://example.com/jasmine-ruiz # optional, links the name
+  - role: Agency
+    name: Northbound Studio
 ---
 ```
+
+`credits` is optional and renders as a "Credits" section on the project's detail page — use it for photographers, illustrators, agencies, or anyone else who contributed. `url` is optional per entry; omit it to show a plain name.
