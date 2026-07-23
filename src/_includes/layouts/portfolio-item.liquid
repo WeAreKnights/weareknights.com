@@ -1,0 +1,16 @@
+---
+layout: layouts/base.liquid
+---
+{% assign designerRecord = authors | getAuthor: designer %}
+<article class="portfolio-detail">
+  <h1>{{ title }}</h1>
+  <p class="post-meta">
+    {{ category }}
+    {% if designerRecord %} · <a href="/authors/{{ designerRecord.id }}/">{{ designerRecord.name }}</a>{% endif %}
+  </p>
+  {% if image %}<img src="{{ image }}" alt="{{ title }}">{% endif %}
+  <div class="post-content">
+    {{ content }}
+  </div>
+  <p><a href="/portfolio/">&larr; Back to portfolio</a></p>
+</article>

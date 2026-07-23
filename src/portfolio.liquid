@@ -1,0 +1,54 @@
+---
+layout: layouts/base.liquid
+title: Portfolio
+description: Selected work from Mitchell Knight and Tonya Knight.
+permalink: /portfolio/
+---
+<h1>Portfolio</h1>
+
+<div class="filter-bar" id="portfolio-filters">
+  <div class="filter-group" data-filter-group="designer">
+    <span>Designer</span>
+    <button type="button" class="filter-btn" data-filter-value="all" aria-pressed="true">All</button>
+    {% assign designers = "" | split: "" %}
+    {% for item in collections.portfolio %}
+      {% unless designers contains item.data.designer %}
+        {% assign designers = designers | push: item.data.designer %}
+      {% endunless %}
+    {% endfor %}
+    {% for id in designers %}
+      {% assign record = authors | getAuthor: id %}
+      <button type="button" class="filter-btn" data-filter-value="{{ id }}" aria-pressed="false">{{ record.name | default: id }}</button>
+    {% endfor %}
+  </div>
+
+  <div class="filter-group" data-filter-group="category">
+    <span>Category</span>
+    <button type="button" class="filter-btn" data-filter-value="all" aria-pressed="true">All</button>
+    {% assign categories = "" | split: "" %}
+    {% for item in collections.portfolio %}
+      {% unless categories contains item.data.category %}
+        {% assign categories = categories | push: item.data.category %}
+      {% endunless %}
+    {% endfor %}
+    {% for category in categories %}
+      <button type="button" class="filter-btn" data-filter-value="{{ category | slugify }}" aria-pressed="false">{{ category }}</button>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="grid" id="portfolio-grid">
+  {% for item in collections.portfolio %}
+  <div class="card portfolio-item" data-designer="{{ item.data.designer }}" data-category="{{ item.data.category | slugify }}">
+    <a href="{{ item.url }}">
+      {% if item.data.image %}<img src="{{ item.data.image }}" alt="{{ item.data.title }}">{% endif %}
+      <div class="card-body">
+        <h3>{{ item.data.title }}</h3>
+        <p>{{ item.data.category }} · {% assign record = authors | getAuthor: item.data.designer %}{{ record.name | default: item.data.designer }}</p>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+
+<script src="/js/portfolio-filter.js"></script>

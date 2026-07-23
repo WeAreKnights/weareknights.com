@@ -1,0 +1,24 @@
+---
+layout: layouts/base.liquid
+title: Blog
+description: Notes on design, process, and the studio.
+permalink: /blog/
+---
+<h1>Blog</h1>
+
+<ul class="post-list">
+  {% for post in collections.posts %}
+  <li class="post-list-item">
+    <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+    <p class="post-meta">
+      <time datetime="{{ post.data.date | htmlDateString }}">{{ post.data.date | readableDate }}</time>
+      {% assign author = authors | getAuthor: post.data.post_author %}
+      {% if author %} · by <a href="/authors/{{ author.id }}/">{{ author.name }}</a>{% endif %}
+    </p>
+    {% if post.data.excerpt %}<p>{{ post.data.excerpt }}</p>{% endif %}
+    {% for category in post.data.categories %}
+      <a class="tag-pill" href="/categories/{{ category | slugify }}/">{{ category }}</a>
+    {% endfor %}
+  </li>
+  {% endfor %}
+</ul>

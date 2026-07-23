@@ -1,0 +1,36 @@
+---
+layout: layouts/base.liquid
+---
+{% assign author = authors | getAuthor: post_author %}
+<article class="post">
+  <header class="post-header">
+    <h1>{{ title }}</h1>
+    <p class="post-meta">
+      <time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
+      {% if author %}
+        · by <a href="/authors/{{ author.id }}/">{{ author.name }}</a>
+      {% endif %}
+    </p>
+    {% if categories %}
+    <p class="post-categories">
+      {% for category in categories %}
+        <a class="tag-pill" href="/categories/{{ category | slugify }}/">{{ category }}</a>
+      {% endfor %}
+    </p>
+    {% endif %}
+  </header>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+  {% if tags %}
+  <footer class="post-tags">
+    {% for tag in tags %}
+      {% if tag != "posts" %}
+        <a class="tag-pill tag-pill-outline" href="/tags/{{ tag | slugify }}/">#{{ tag }}</a>
+      {% endif %}
+    {% endfor %}
+  </footer>
+  {% endif %}
+</article>

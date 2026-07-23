@@ -1,0 +1,27 @@
+---
+layout: layouts/base.liquid
+pagination:
+  data: collections.categoryList
+  size: 1
+  alias: category
+permalink: "/categories/{{ category | slugify }}/"
+eleventyComputed:
+  title: "Category: {{ category }}"
+---
+<h1>Category: {{ category }}</h1>
+
+<ul class="post-list">
+  {% for post in collections.posts %}
+    {% if post.data.categories contains category %}
+    <li class="post-list-item">
+      <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+      <p class="post-meta">
+        <time datetime="{{ post.data.date | htmlDateString }}">{{ post.data.date | readableDate }}</time>
+      </p>
+      {% if post.data.excerpt %}<p>{{ post.data.excerpt }}</p>{% endif %}
+    </li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+<p><a href="/blog/">&larr; Back to all posts</a></p>

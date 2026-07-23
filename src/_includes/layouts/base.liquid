@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} · {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ description | default: site.description }}">
+  <link rel="stylesheet" href="/css/open-props.min.css">
+  <link rel="stylesheet" href="/css/open-props.normalize.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-title" href="/">{{ site.title }}</a>
+      <nav class="site-nav">
+        <ul>
+          {% for item in site.nav %}
+          <li><a href="{{ item.url }}">{{ item.text }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; {% year %} {{ site.title }}. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
