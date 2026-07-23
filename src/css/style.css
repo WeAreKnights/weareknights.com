@@ -26,10 +26,18 @@
 }
 
 body {
-  background: var(--color-bg);
+  background-color: var(--color-bg);
+  background-image: url("/img/dot-grid-light.svg");
+  background-repeat: repeat;
   color: var(--color-text);
   font-family: var(--font-body);
   line-height: var(--font-lineheight-3);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-image: url("/img/dot-grid-dark.svg");
+  }
 }
 
 a {
