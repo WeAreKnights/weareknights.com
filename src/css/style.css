@@ -1,6 +1,6 @@
 :root {
-  --font-body: var(--font-sans);
-  --font-heading: var(--font-sans);
+  --font-body: "Geom", var(--font-sans);
+  --font-heading: "Geom", var(--font-sans);
   --content-max: 72ch;
   /* Rem, not ch: a ch-based measure computes a different pixel width per
      element depending on its own font-size, so an h1 and a p "sharing"
@@ -41,6 +41,7 @@ body {
   color: var(--color-text);
   font-family: var(--font-body);
   font-size: var(--step-0);
+  font-weight: 100;
   line-height: var(--font-lineheight-3);
 }
 
@@ -58,10 +59,12 @@ h5,
 h6 {
   text-wrap: balance;
   margin-block: 0 0.5lh;
+  font-weight: 100;
 }
 
 h1 {
   font-size: var(--step-3);
+  font-weight: 400;
 }
 
 h2 {
@@ -156,7 +159,6 @@ li {
 .site-nav a {
   text-decoration: none;
   font-size: var(--step-0);
-  font-weight: var(--font-weight-5);
   text-transform: uppercase;
   color: var(--color-accent);
 }
@@ -488,7 +490,6 @@ main.wrap > * + * {
   gap: var(--size-2);
   color: var(--color-accent);
   text-decoration: none;
-  font-weight: var(--font-weight-6);
 }
 
 .social-link:hover {
