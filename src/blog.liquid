@@ -8,22 +8,6 @@ permalink: /blog/
 
 <ul class="post-list">
   {% for post in collections.posts %}
-  <li class="post-list-item reveal reveal-item" style="--reveal-index: {{ forloop.index0 }}">
-    {% if post.data.image %}
-    <a href="{{ post.url }}"><img class="post-thumb" src="{{ post.data.image }}" alt="{{ post.data.title }}"></a>
-    {% endif %}
-    <div class="post-list-item-body">
-      <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
-      <p class="post-meta">
-        <time datetime="{{ post.data.date | htmlDateString }}">{{ post.data.date | readableDate }}</time>
-        {% assign author = authors | getAuthor: post.data.post_author %}
-        {% if author %} · by <a href="/authors/{{ author.id }}/">{{ author.name }}</a>{% endif %}
-      </p>
-      {% if post.data.excerpt %}<p>{{ post.data.excerpt }}</p>{% endif %}
-      {% for category in post.data.categories %}
-        <a class="tag-pill" href="/categories/{{ category | slugify }}/">{{ category }}</a>
-      {% endfor %}
-    </div>
-  </li>
+    {% include "post-list-item.liquid", post: post, revealIndex: forloop.index0 %}
   {% endfor %}
 </ul>
