@@ -7,9 +7,32 @@ pagination:
 permalink: "/authors/{{ author.id }}/"
 eleventyComputed:
   title: "{{ author.name }}"
+  description: "{{ author.bio }}"
 ---
 <h1>{{ author.name }}</h1>
 <p>{{ author.bio }}</p>
+
+{% if author.social %}
+<ul class="social-links reveal">
+  {% for link in author.social %}
+  <li>
+    <a class="social-link" href="{{ link.url }}" target="_blank" rel="noopener noreferrer">
+      {% if link.platform == "github" %}
+      <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+      </svg>
+      {% elsif link.platform == "dribbble" %}
+      <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72M19.13 5.09C15.41 9.44 10.19 10.76 2.25 10.75M21.75 12.83c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"></path>
+      </svg>
+      {% endif %}
+      <span>{{ link.label }}</span>
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
 
 {% assign authorPortfolio = "" | split: "" %}
 {% for item in collections.portfolio %}

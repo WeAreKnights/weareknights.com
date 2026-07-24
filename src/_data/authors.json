@@ -3,7 +3,11 @@
     "id": "mitchell",
     "name": "Mitchell Knight",
     "bio": "Designer at We Are Knights, focused on brand identity and print.",
-    "avatar": "/img/authors/mitchell.svg"
+    "avatar": "/img/authors/mitchell.svg",
+    "social": [
+      { "platform": "github", "label": "GitHub", "url": "https://github.com/mitchellknight" },
+      { "platform": "dribbble", "label": "Dribbble", "url": "https://dribbble.com/weareknights" }
+    ]
   },
   {
     "id": "tonya",
