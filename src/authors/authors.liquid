@@ -11,6 +11,59 @@ eleventyComputed:
 <h1>{{ author.name }}</h1>
 <p>{{ author.bio }}</p>
 
+{% assign authorPortfolio = "" | split: "" %}
+{% for item in collections.portfolio %}
+  {% if item.data.designer == author.id %}
+    {% assign authorPortfolio = authorPortfolio | push: item %}
+  {% endif %}
+{% endfor %}
+{% assign recentAuthorPortfolio = authorPortfolio | slice: 0, 4 %}
+
+{% if recentAuthorPortfolio.size > 0 %}
+<section class="reveal">
+  <h2>Portfolio</h2>
+
+  {% assign authorCategories = "" | split: "" %}
+  {% for item in recentAuthorPortfolio %}
+    {% unless authorCategories contains item.data.category %}
+      {% assign authorCategories = authorCategories | push: item.data.category %}
+    {% endunless %}
+  {% endfor %}
+
+  {% if authorCategories.size > 1 %}
+  <div class="filter-bar reveal">
+    <div class="filter-group" data-filter-group="category">
+      <span>Category</span>
+      <button type="button" class="filter-btn" data-filter-value="all" aria-pressed="true">All</button>
+      {% for category in authorCategories %}
+      <button type="button" class="filter-btn" data-filter-value="{{ category | slugify }}" aria-pressed="false">{{ category }}</button>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="grid">
+    {% for item in recentAuthorPortfolio %}
+    <div class="card portfolio-item reveal reveal-item" data-designer="{{ item.data.designer }}" data-category="{{ item.data.category | slugify }}" style="--reveal-index: {{ forloop.index0 }}">
+      <a href="{{ item.url }}">
+        {% if item.data.image %}<img src="{{ item.data.image }}" alt="{{ item.data.title }}">{% endif %}
+        <div class="card-body">
+          <h3>{{ item.data.title }}</h3>
+          <p>{{ item.data.category }}</p>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+
+  <p><a href="/portfolio/?designer={{ author.id }}">View all portfolio pieces by {{ author.name }} &rarr;</a></p>
+</section>
+
+<script src="/js/portfolio-filter.js"></script>
+{% endif %}
+
+<h2>Blog Posts</h2>
+
 <ul class="post-list">
   {% assign revealIndex = -1 %}
   {% for post in collections.posts %}
