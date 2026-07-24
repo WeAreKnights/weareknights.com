@@ -15,7 +15,7 @@
   --color-text: var(--color-black);
   --color-muted: var(--color-grey-600);
   --color-border: var(--color-grey-300);
-  --color-surface: var(--color-grey-100);
+  --color-surface: rgb(from var(--color-accent) r g b / 15%);
 
   /* Perfect Fifth type scale (ratio 1.5), 1rem = 16px body copy. */
   --step--1: 0.667rem;
