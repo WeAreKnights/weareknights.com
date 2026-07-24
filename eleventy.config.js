@@ -17,6 +17,11 @@ export default function (eleventyConfig) {
     strictFilters: false,
   });
 
+  // 8080 collides with another local 11ty site.
+  eleventyConfig.setServerOptions({
+    port: 8090,
+  });
+
   // Date formatting filter used throughout blog templates.
   // timeZone: "UTC" keeps date-only front matter values (parsed as UTC
   // midnight) from displaying as the previous day in negative UTC offsets.
