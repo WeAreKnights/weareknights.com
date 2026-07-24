@@ -181,7 +181,7 @@ li {
 
 main.wrap {
   background: var(--color-white);
-  border-radius: var(--radius-4);
+  border-radius: var(--radius-4) var(--radius-4) 0 0;
   margin-block: var(--size-6);
   padding-block: var(--size-7);
   min-height: 60vh;
@@ -198,6 +198,10 @@ main.wrap > * + * {
   padding-block: var(--size-5);
   color: var(--color-muted);
   font-size: var(--step--1);
+}
+
+.site-footer .wrap {
+  background: var(--color-white);
 }
 
 .site-footer small {
