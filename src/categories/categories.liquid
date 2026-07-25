@@ -16,6 +16,6 @@ eleventyComputed:
     {% assign categoryPosts = categoryPosts | push: post %}
   {% endif %}
 {% endfor %}
-{% include "blog-index.liquid", posts: categoryPosts %}
+{% include "partials/blog-index.liquid", posts: categoryPosts %}
 
 <p><a href="/blog/">&larr; Back to all posts</a></p>

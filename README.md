@@ -9,6 +9,7 @@ Portfolio site for designers Mitchell Knight and Tonya Knight, built with [Eleve
 - `src/_data/authors.json` — author/designer records used by blog posts and portfolio items
 - `src/categories/`, `src/tags/`, `src/authors/` — paginated archive templates that generate one page per category, tag, and author
 - `src/_includes/layouts/` — Liquid layouts (`base`, `page`, `post`, `portfolio-item`)
+- `src/_includes/partials/` — reusable includes (`blog-index`, `portfolio-index`, `post-list-item`), Shopify snippets-style — any page listing blog posts or portfolio pieces should render through one of these instead of duplicating the markup
 - `src/css/style.css` — site styles built on Open Props tokens
 
 ## Development

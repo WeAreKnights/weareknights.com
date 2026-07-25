@@ -65,7 +65,7 @@ eleventyComputed:
   </div>
   {% endif %}
 
-  {% include "portfolio-index.liquid", items: recentAuthorPortfolio %}
+  {% include "partials/portfolio-index.liquid", items: recentAuthorPortfolio %}
 
   <p><a href="/portfolio/?designer={{ author.id }}">View all portfolio pieces by {{ author.name }} &rarr;</a></p>
 </section>
@@ -81,6 +81,6 @@ eleventyComputed:
     {% assign authorPosts = authorPosts | push: post %}
   {% endif %}
 {% endfor %}
-{% include "blog-index.liquid", posts: authorPosts %}
+{% include "partials/blog-index.liquid", posts: authorPosts %}
 
 <p><a href="/blog/">&larr; Back to all posts</a></p>

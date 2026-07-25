@@ -1,0 +1,5 @@
+<ul class="post-list">
+  {% for post in posts %}
+    {% include "partials/post-list-item.liquid", post: post, revealIndex: forloop.index0 %}
+  {% endfor %}
+</ul>
