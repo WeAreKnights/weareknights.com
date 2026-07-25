@@ -3,7 +3,6 @@
   "description": "Design portfolio and studio journal of Mitchell Knight and Tonya Knight.",
   "url": "https://weareknights.com",
   "nav": [
-    { "text": "Home", "url": "/" },
     { "text": "Portfolio", "url": "/portfolio/" },
     { "text": "Blog", "url": "/blog/" },
     { "text": "About", "url": "/about/" }

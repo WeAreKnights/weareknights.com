@@ -9,7 +9,7 @@ title: Home
 
 <section class="reveal">
   <h2>Recent work</h2>
-  {% assign recentPortfolio = collections.portfolio | reverse | slice: 0, 3 %}
+  {% assign recentPortfolio = collections.portfolio | reverse | slice: 0, 4 %}
   {% include "portfolio-index.liquid", items: recentPortfolio %}
   <p><a href="/portfolio/">View the full portfolio &rarr;</a></p>
 </section>

@@ -6,14 +6,16 @@ permalink: /about/
 ---
 <p>We Are Knights is a design studio founded by Mitchell Knight and Tonya Knight, working across brand identity, web design, and print.</p>
 
-<div class="grid">
+<div class="about-grid">
   {% for author in authors %}
-  <div class="card reveal reveal-item" style="--reveal-index: {{ forloop.index0 }}">
-    <img src="{{ author.avatar }}" alt="{{ author.name }}">
-    <div class="card-body">
-      <h3><a href="/authors/{{ author.id }}/">{{ author.name }}</a></h3>
-      <p>{{ author.bio }}</p>
-    </div>
+  <div class="about-tile reveal reveal-item" style="--reveal-index: {{ forloop.index0 }}">
+    <a href="/authors/{{ author.id }}/">
+      <img src="{{ author.avatar }}" alt="{{ author.name }}">
+      <div class="tile-overlay">
+        <h3>{{ author.name }}</h3>
+        <p>{{ author.bio }}</p>
+      </div>
+    </a>
   </div>
   {% endfor %}
 </div>
