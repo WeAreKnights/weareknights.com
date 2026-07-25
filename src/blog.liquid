@@ -6,8 +6,4 @@ permalink: /blog/
 ---
 <h1>Blog</h1>
 
-<ul class="post-list">
-  {% for post in collections.posts %}
-    {% include "post-list-item.liquid", post: post, revealIndex: forloop.index0 %}
-  {% endfor %}
-</ul>
+{% include "blog-index.liquid", posts: collections.posts %}

@@ -10,14 +10,12 @@ eleventyComputed:
 ---
 <h1>Category: {{ category }}</h1>
 
-<ul class="post-list">
-  {% assign revealIndex = -1 %}
-  {% for post in collections.posts %}
-    {% if post.data.categories contains category %}
-    {% assign revealIndex = revealIndex | plus: 1 %}
-    {% include "post-list-item.liquid", post: post, revealIndex: revealIndex %}
-    {% endif %}
-  {% endfor %}
-</ul>
+{% assign categoryPosts = "" | split: "" %}
+{% for post in collections.posts %}
+  {% if post.data.categories contains category %}
+    {% assign categoryPosts = categoryPosts | push: post %}
+  {% endif %}
+{% endfor %}
+{% include "blog-index.liquid", posts: categoryPosts %}
 
 <p><a href="/blog/">&larr; Back to all posts</a></p>

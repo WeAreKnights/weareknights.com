@@ -37,18 +37,6 @@ permalink: /portfolio/
   </div>
 </div>
 
-<div class="grid" id="portfolio-grid">
-  {% for item in collections.portfolio %}
-  <div class="card portfolio-item reveal reveal-item" data-designer="{{ item.data.designer }}" data-category="{{ item.data.category | slugify }}" style="--reveal-index: {{ forloop.index0 }}">
-    <a href="{{ item.url }}">
-      {% if item.data.image %}<img src="{{ item.data.image }}" alt="{{ item.data.title }}">{% endif %}
-      <div class="card-body">
-        <h3>{{ item.data.title }}</h3>
-        <p>{{ item.data.category }} · {% assign record = authors | getAuthor: item.data.designer %}{{ record.name | default: item.data.designer }}</p>
-      </div>
-    </a>
-  </div>
-  {% endfor %}
-</div>
+{% include "portfolio-index.liquid", items: collections.portfolio %}
 
 <script src="/js/portfolio-filter.js"></script>

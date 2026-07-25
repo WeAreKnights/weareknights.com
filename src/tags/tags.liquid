@@ -10,14 +10,12 @@ eleventyComputed:
 ---
 <h1>Tag: #{{ tag }}</h1>
 
-<ul class="post-list">
-  {% assign revealIndex = -1 %}
-  {% for post in collections.posts %}
-    {% if post.data.tags contains tag %}
-    {% assign revealIndex = revealIndex | plus: 1 %}
-    {% include "post-list-item.liquid", post: post, revealIndex: revealIndex %}
-    {% endif %}
-  {% endfor %}
-</ul>
+{% assign tagPosts = "" | split: "" %}
+{% for post in collections.posts %}
+  {% if post.data.tags contains tag %}
+    {% assign tagPosts = tagPosts | push: post %}
+  {% endif %}
+{% endfor %}
+{% include "blog-index.liquid", posts: tagPosts %}
 
 <p><a href="/blog/">&larr; Back to all posts</a></p>
