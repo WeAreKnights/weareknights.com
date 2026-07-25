@@ -2,7 +2,7 @@
 title: "What Website Platforms Really Cost in 2026"
 description: "Real 2026 pricing for WordPress hosting, Wix, Squarespace, Webflow, Shopify, and WooCommerce, including the add-ons and fees each platform leaves off the pricing page."
 excerpt: "Real 2026 pricing for WordPress hosting, Wix, Squarespace, Webflow, Shopify, and WooCommerce, including the add-ons and fees each platform leaves off the pricing page."
-date: 2026-07-10
+date: 2026-06-15
 post_author: mitchell
 tags:
   - pricing
