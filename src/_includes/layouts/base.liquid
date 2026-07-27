@@ -20,11 +20,26 @@
         <img class="site-logo" src="/img/logo.svg" alt="{{ site.title }}">
       </a>
       <nav class="site-nav">
-        <ul>
+        <ul class="site-nav-list">
           {% for item in site.nav %}
           <li><a href="{{ item.url }}">{{ item.text }}</a></li>
           {% endfor %}
         </ul>
+        <details class="nav-toggle">
+          <summary class="nav-toggle-btn">
+            <span class="nav-toggle-icon" aria-hidden="true">
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+            </span>
+            <span class="visually-hidden">Menu</span>
+          </summary>
+          <ul class="site-nav-list">
+            {% for item in site.nav %}
+            <li><a href="{{ item.url }}">{{ item.text }}</a></li>
+            {% endfor %}
+          </ul>
+        </details>
       </nav>
     </div>
   </header>
