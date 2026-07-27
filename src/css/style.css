@@ -199,6 +199,7 @@ li {
    at a given viewport width. */
 .nav-toggle {
   display: none;
+  background: none;
 }
 
 .nav-toggle-btn {
@@ -206,6 +207,7 @@ li {
   cursor: pointer;
   color: var(--color-accent);
   padding: var(--size-1);
+  background: none;
 }
 
 .nav-toggle-btn::-webkit-details-marker {
@@ -259,7 +261,9 @@ li {
   }
 
   .nav-toggle {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
 
   .nav-toggle-btn {
@@ -277,7 +281,7 @@ li {
 
   .nav-toggle ul {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
     gap: var(--size-3);
     margin-block-start: var(--size-4);
   }
