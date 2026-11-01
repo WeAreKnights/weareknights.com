@@ -6,9 +6,11 @@
 main {
 	min-height: 60vh;
 	margin-inline: var(--page-gutter);
+	padding: var(--page-gutter);
 	border-radius: var(--radius-4);
 	background: var(--color-surface);
 	overflow: clip;
+	display: flow-root; /* keeps the last child's bottom margin inside the container */
 }
 
 .content {

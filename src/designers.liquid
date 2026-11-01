@@ -4,7 +4,7 @@ pagination:
   data: authors
   size: 1
   alias: author
-permalink: "/authors/{{ author.id }}/"
+permalink: "/designers/{{ author.id }}/"
 fullWidth: true
 eleventyComputed:
   title: "{{ author.name }}"
@@ -12,9 +12,23 @@ eleventyComputed:
 ---
 
 <section class="content">
-	<p>{{ author.bio }}</p>
+	{% assign intro = author.about | default: author.bio %}
+	{% assign sentences = intro | split: ". " %}
+	{% if sentences.size > 1 %}
+		<p class="lead">{{ sentences | first }}.</p>
+		<p>{{ sentences | slice: 1, sentences.size | join: ". " }}</p>
+	{% else %}
+		<p class="lead">{{ intro }}</p>
+	{% endif %}
 	{% include "components/author/author-links.liquid" %}
 </section>
+
+{% if author.clients.size > 0 %}
+	<section class="container">
+		<h2>Brands</h2>
+		{% include "components/client-logos/client-logos.liquid", clients: author.clients %}
+	</section>
+{% endif %}
 
 {% assign authorProjects = collections.portfolioProjects | where: "data.designer", author.id %}
 {% if authorProjects.size > 0 %}
@@ -22,7 +36,7 @@ eleventyComputed:
 		<h2>Portfolio</h2>
 		{% assign recentProjects = authorProjects | reverse | slice: 0, 4 %}
 		{% include "components/portfolio/portfolio.liquid", items: recentProjects, isFilterable: true %}
-		<p><a href="/portfolio/?designer={{ author.id }}">View all portfolio pieces by {{ author.name }} &rarr;</a></p>
+		<p><a class="button button-outline" href="/portfolio/?designer={{ author.id }}">View Full Portfolio</a></p>
 	</section>
 {% endif %}
 

@@ -22,7 +22,7 @@
 				</p>
 			{% endif %}
 			{% assign postAuthor = authors | where: "id", post.data.author | first %}
-			{% if postAuthor %}<p class="author-byline">By <a href="/authors/{{ postAuthor.id }}/">{{ postAuthor.name }}</a></p>{% endif %}
+			{% if postAuthor %}<p class="author-byline">By <a href="/designers/{{ postAuthor.id }}/">{{ postAuthor.name }}</a></p>{% endif %}
 			<time datetime="{{ post.date | isoDate }}" title="{{ post.date | readableDate }}">{{ post.date | relativeDate }}</time>
 		</li>
 	{% endfor %}

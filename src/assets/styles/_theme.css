@@ -1,7 +1,7 @@
 :root {
 	--color-page: rgb(from #a0d8d2 r g b / 15%);
 	--color-accent: #a0d8d2;
-	--color-on-accent: var(--gray-9);
+	--color-on-accent: #ffffff;
 	--color-primary: #2f7f76;
 	--color-on-primary: var(--gray-0);
 	--color-text: var(--gray-9);

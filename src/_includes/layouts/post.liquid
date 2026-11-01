@@ -8,6 +8,6 @@ layout: base.liquid
 {% blogPostingSchema site, pageTitle, description, image, page.url, date, modified %}
 {% assign postAuthor = authors | where: "id", author | first %}
 <article{% unless fullWidth %} class="content"{% endunless %}>
-	{% if postAuthor %}<p class="author-byline">By <a href="/authors/{{ postAuthor.id }}/">{{ postAuthor.name }}</a></p>{% endif %}
+	{% if postAuthor %}<p class="author-byline">By <a href="/designers/{{ postAuthor.id }}/">{{ postAuthor.name }}</a></p>{% endif %}
 	{{ content }}
 </article>

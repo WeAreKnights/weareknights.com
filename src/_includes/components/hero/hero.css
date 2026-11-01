@@ -8,6 +8,7 @@
 	background-size: cover;
 	background-position: center;
 	color: var(--color-on-accent);
+	border-radius: var(--radius-3);
 	overflow: hidden;
 }
 

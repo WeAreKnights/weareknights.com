@@ -8,7 +8,7 @@ layout: base.liquid
 {% assign projectDesigner = authors | where: "id", designer | first %}
 <article class="container">
 	<p>
-		{{ category }}{% if projectDesigner %} &middot; <a href="/authors/{{ projectDesigner.id }}/">{{ projectDesigner.name }}</a>{% endif %}
+		{{ category }}{% if projectDesigner %} &middot; <a href="/designers/{{ projectDesigner.id }}/">{{ projectDesigner.name }}</a>{% endif %}
 	</p>
 	{{ content }}
 	{% assign projectImages = images %}

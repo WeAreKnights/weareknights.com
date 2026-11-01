@@ -5,14 +5,73 @@
     "bio": "Designer at We Are Knights, focused on brand identity and print.",
     "avatar": "authors/mitchell.svg",
     "social": [
-      { "platform": "github", "label": "GitHub", "url": "https://github.com/mitchellknight" },
-      { "platform": "dribbble", "label": "Dribbble", "url": "https://dribbble.com/weareknights" }
+      {
+        "platform": "github",
+        "label": "GitHub",
+        "url": "https://github.com/mitchellknight"
+      },
+      {
+        "platform": "dribbble",
+        "label": "Dribbble",
+        "url": "https://dribbble.com/weareknights"
+      },
+      {
+        "platform": "linkedin",
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/mitchell-k-6baa9550/"
+      }
     ]
   },
   {
     "id": "tonya",
     "name": "Tonya Knight",
     "bio": "Designer at We Are Knights, focused on web and product design.",
-    "avatar": "authors/tonya.svg"
+    "about": "Tonya Knight is a graphic designer and artist with a passion for all things aesthetic and a strong instinct for ideas. She has guided projects from concept to completion, working directly with clients, leading the creative process, or contributing as part of a larger team. Her work spans brand identity, package design, advertising, web and mobile design, video graphics, and presentations, often in multiple languages, for clients ranging from startups to Fortune 100 companies, including The Coca-Cola Company, vitaminWater, and Arya Laya. Trained in graphic design and fine art, with early experience in photo retouching and large-scale mural painting, she is fluent in Photoshop, Illustrator, InDesign, and PowerPoint, and co-owns the design studio We Are Knights.",
+    "avatar": "authors/tonya.svg",
+    "social": [
+      {
+        "platform": "linkedin",
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/tonya-knight-564a5271/"
+      }
+    ],
+    "clients": [
+      {
+        "name": "Barilla",
+        "logo": "clients/barilla.svg"
+      },
+      {
+        "name": "The Coca-Cola Company",
+        "logo": "clients/the-coca-cola-company.svg"
+      },
+      {
+        "name": "Hershey",
+        "logo": "clients/hershey.svg"
+      },
+      {
+        "name": "Johnson & Johnson",
+        "logo": "clients/johnson-and-johnson.svg"
+      },
+      {
+        "name": "MeadWestvaco",
+        "logo": "clients/meadwestvaco.svg"
+      },
+      {
+        "name": "Minute Maid",
+        "logo": "clients/minute-maid.svg"
+      },
+      {
+        "name": "Unisource",
+        "logo": "clients/unisource.svg"
+      },
+      {
+        "name": "vitaminWater",
+        "logo": "clients/vitaminwater.svg"
+      },
+      {
+        "name": "Zep",
+        "logo": "clients/zep.svg"
+      }
+    ]
   }
 ]

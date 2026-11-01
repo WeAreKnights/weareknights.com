@@ -1,0 +1,7 @@
+<ul class="client-logos">
+	{% for client in clients %}
+		<li>
+			{% responsiveImage client.logo, client.name, "(min-width: 640px) 20vw, 40vw" %}
+		</li>
+	{% endfor %}
+</ul>

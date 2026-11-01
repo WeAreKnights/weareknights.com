@@ -1,0 +1,36 @@
+@import "../../../assets/styles/_breakpoints.css";
+
+.client-logos {
+	--client-logo-max-width: 8rem;
+	--client-logo-max-height: 3.5rem;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: var(--size-3);
+	margin: 0 0 var(--size-6);
+	padding: 0;
+	list-style: none;
+}
+
+@media (--sm-down) {
+	.client-logos {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+.client-logos li {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	aspect-ratio: 2 / 1;
+	padding: var(--size-5);
+	border: var(--border-size-1) solid var(--color-border-subtle);
+	border-radius: var(--radius-2);
+}
+
+.client-logos img {
+	width: auto;
+	max-width: min(100%, var(--client-logo-max-width));
+	height: auto;
+	max-height: var(--client-logo-max-height);
+	object-fit: contain;
+}

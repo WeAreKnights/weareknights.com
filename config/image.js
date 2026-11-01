@@ -26,7 +26,7 @@ export default function (eleventyConfig) {
 	});
 
 	/**
-	 * Responsive `<picture>` from a file in src/images.
+	 * Responsive `<picture>` from a file in src/images (SVGs are copied as-is, hashed, with their width and height).
 	 * @param {string} source Path relative to src/images.
 	 * @param {string} alt Alternative text; pass "" for decorative images.
 	 * @param {string} [sizes] HTML `sizes` attribute.
@@ -37,9 +37,12 @@ export default function (eleventyConfig) {
 			console.warn(`Missing alt text for image: ${source}`);
 		}
 
+		// SVGs stay vector (rasterizing logos would blur them and lose transparency in JPEG).
+		const isVector = source.toLowerCase().endsWith(".svg");
+
 		const metadata = await Image(`./src/images/${source}`, {
-			widths: [400, 800, 1600, null],
-			formats: ["avif", "webp", "jpeg"],
+			widths: isVector ? [null] : [400, 800, 1600, null],
+			formats: isVector ? ["svg"] : ["avif", "webp", "jpeg"],
 			outputDir: "./_site/assets/images/optimized/",
 			urlPath: "/assets/images/optimized/",
 		});

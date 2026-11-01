@@ -10,7 +10,7 @@
 	background: var(--color-primary);
 	color: var(--color-on-primary);
 	font: inherit;
-	font-weight: var(--font-weight-6);
+	font-weight: var(--font-weight-5);
 	text-decoration: none;
 	white-space: nowrap;
 	cursor: pointer;

@@ -13,3 +13,4 @@ CSS-only component — no shortcode. Put the classes on an `<a>` or `<button>`.
 - Colors come only from `--color-*` tokens, so retheming stays in `_theme.css`. Primary hover is `filter: brightness(0.92)` rather than a new token — add a hover token only if a second place needs it.
 - Modifier classes use a single hyphen on purpose (no BEM `--`).
 - `.nav-button` and the form submit use `.button`; keep their own CSS to layout only.
+- Button text is weight 500 (`--font-weight-5`), the heaviest weight the site's font loads; a higher weight would make the browser fake a bold.
