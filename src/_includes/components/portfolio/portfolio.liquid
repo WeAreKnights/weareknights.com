@@ -30,7 +30,8 @@
 		{% for item in items %}
 			{% assign cover = item.data.images | first | default: item.data.image %}
 			{% assign coverPath = cover.src | default: cover %}
-			<div class="portfolio-tile" data-designer="{{ item.data.designer }}" data-category="{{ item.data.category | slugify }}">
+			{% assign patternPosition = forloop.index0 | modulo: 4 %}
+			<div class="portfolio-tile" data-wide="{% if patternPosition == 1 or patternPosition == 2 %}true{% else %}false{% endif %}" data-designer="{{ item.data.designer }}" data-category="{{ item.data.category | slugify }}">
 				<a href="{{ item.url }}">
 					{% if coverPath %}{% responsiveImage coverPath, item.data.title, "(min-width: 640px) 50vw, 100vw" %}{% endif %}
 					<div class="portfolio-tile-overlay">

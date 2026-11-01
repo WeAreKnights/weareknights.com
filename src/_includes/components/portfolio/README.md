@@ -40,7 +40,7 @@ credits:                  # optional
 
 ## Notes
 
-- The mosaic spans (1/2/2/1) count hidden tiles, so after filtering the rhythm can shift. That matches how the old site behaved.
+- The mosaic (small-large, then large-small) comes from `data-wide` on each tile: the template sets it for the full list and `portfolio.js` re-deals it over the visible tiles after every filter, so a filtered grid keeps the same rhythm. Don't switch back to `:nth-child`: hidden tiles still count as children.
 - An `images` entry is either a path or `{ src, caption }`; the two can be mixed. A caption shows under the image on the project page and becomes its alt text (`Title: Caption`); without one the alt text is `Title (n of N)`. The grid tile only uses the first image's path.
 - A project is one page with all its images stacked, so group a client's work into one file (`arya-laya.md` has 6). A single `image:` string still works for one-image projects.
 - Images must be files in `src/images/` (see `responsiveImage` in `config/image.js`), not passthrough assets.

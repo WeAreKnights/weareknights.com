@@ -44,3 +44,27 @@ h6 { font-size: var(--step--1); }
 a {
 	color: var(--color-primary);
 }
+
+/* Links in the page container: body-colored text with a thick accent-colored underline. :where() keeps this at the lowest specificity, so components with their own link styles (cards, buttons, pills) override it. */
+main a:where(:not([class])) {
+	color: inherit;
+	text-decoration-line: underline;
+	text-decoration-color: var(--color-accent);
+	text-decoration-thickness: 0.15em;
+	text-underline-offset: 0.2em;
+}
+
+main a:where(:not([class])):hover {
+	text-decoration-color: var(--color-primary);
+}
+
+/* Links in the header and footer only underline on hover; body links keep theirs. */
+header a,
+.footer-inner a {
+	text-decoration: none;
+}
+
+header a:hover,
+.footer-inner a:hover {
+	text-decoration: underline;
+}

@@ -2,6 +2,8 @@
 
 const portfolioElements = document.querySelectorAll(".portfolio");
 const allValue = "all";
+const patternLength = 4;
+const widePatternPositions = [1, 2];
 
 function readQueryValue(key) {
 	return new URLSearchParams(window.location.search).get(key);
@@ -10,6 +12,19 @@ function readQueryValue(key) {
 function setPressedButton(group, value) {
 	group.querySelectorAll(".portfolio-filter-button").forEach((button) => {
 		button.setAttribute("aria-pressed", String(button.dataset.filterValue === value));
+	});
+}
+
+// Re-deal the small/large rhythm over the tiles still visible, so a filtered grid keeps the same pattern as the full one.
+function layoutTiles(tiles) {
+	let visibleIndex = 0;
+
+	tiles.forEach((tile) => {
+		if (tile.hidden) return;
+
+		const isWide = widePatternPositions.includes(visibleIndex % patternLength);
+		tile.dataset.wide = String(isWide);
+		visibleIndex += 1;
 	});
 }
 
@@ -23,6 +38,8 @@ function setupPortfolio(portfolio) {
 			const isMatch = Object.entries(filters).every(([key, value]) => value === allValue || tile.dataset[key] === value);
 			tile.hidden = !isMatch;
 		});
+
+		layoutTiles(tiles);
 	}
 
 	groups.forEach((group) => {

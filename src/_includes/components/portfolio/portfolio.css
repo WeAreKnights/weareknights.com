@@ -48,8 +48,8 @@
 	grid-auto-rows: 20rem;
 }
 
-.portfolio-tile:nth-child(4n + 2),
-.portfolio-tile:nth-child(4n + 3) {
+/* Which tiles are wide is set by data-wide (the template for the full list, portfolio.js again after filtering) rather than :nth-child, because hidden tiles still count as children and would break the rhythm. */
+.portfolio-tile[data-wide="true"] {
 	grid-column: span 2;
 }
 
@@ -58,7 +58,7 @@
 		grid-template-columns: 1fr;
 	}
 
-	.portfolio-grid > .portfolio-tile {
+	.portfolio-grid > .portfolio-tile[data-wide] {
 		grid-column: span 1;
 	}
 }
