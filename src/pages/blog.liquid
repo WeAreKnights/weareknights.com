@@ -1,0 +1,12 @@
+---
+title: Blog
+description: Latest posts.
+pagination:
+  data: collections.blogPages
+  size: 1
+  alias: blogPage
+eleventyComputed:
+  permalink: "{% if blogPage.pageNumber > 0 %}/blog/page/{{ blogPage.pageNumber | plus: 1 }}/{% else %}/blog/{% endif %}"
+---
+
+{% include "partials/post-archive.liquid", posts: blogPage.posts, pageNumber: blogPage.pageNumber, totalPages: blogPage.totalPages, term: "Blog", basePath: "/blog" %}

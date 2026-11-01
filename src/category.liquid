@@ -1,0 +1,15 @@
+---
+layout: page.liquid
+pagination:
+  data: collections.postCategoryPages
+  size: 1
+  alias: categoryPage
+permalink: "/blog/category/{{ categoryPage.term | slugify }}/{% if categoryPage.pageNumber > 0 %}page/{{ categoryPage.pageNumber | plus: 1 }}/{% endif %}"
+eleventyComputed:
+  title: "{{ categoryPage.term }}"
+  description: "Posts in {{ categoryPage.term }}."
+---
+
+{% assign slug = categoryPage.term | slugify %}
+{% assign basePath = "/blog/category/" | append: slug %}
+{% include "partials/post-archive.liquid", posts: categoryPage.posts, pageNumber: categoryPage.pageNumber, totalPages: categoryPage.totalPages, term: categoryPage.term, basePath: basePath %}

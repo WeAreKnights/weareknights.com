@@ -1,0 +1,236 @@
+@import "../../../assets/styles/_breakpoints.css";
+
+.header-inner {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+header nav {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	flex-grow: 1;
+	gap: var(--size-4);
+	padding: var(--size-4);
+	padding-inline-end: 0;
+}
+
+header nav img {
+	display: block;
+	height: var(--size-7);
+	width: auto;
+}
+
+.nav-button {
+	margin-inline-end: var(--size-4);
+}
+
+.nav-button svg {
+	width: var(--size-4);
+	height: var(--size-4);
+}
+
+.nav-search {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-inline-end: var(--size-2);
+	padding: var(--size-2);
+	border: none;
+	background: none;
+	color: inherit;
+	cursor: pointer;
+}
+
+.nav-search:last-child {
+	margin-inline-end: var(--size-4);
+}
+
+.nav-search svg {
+	width: var(--size-5);
+	height: var(--size-5);
+}
+
+html:not(.js) .nav-search {
+	display: none;
+}
+
+.nav-toggle {
+	display: none;
+	align-items: center;
+	gap: var(--size-2);
+	margin-inline-start: auto;
+	padding: var(--size-2);
+	background: none;
+	border: none;
+	color: inherit;
+	cursor: pointer;
+}
+
+.nav-toggle svg {
+	width: var(--size-6);
+	height: var(--size-6);
+}
+
+.nav-links {
+	margin-inline-start: auto;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: var(--size-4);
+}
+
+@media (--sm-down) {
+	/* Keep the search button on the first row beside the menu button, even while the open menu makes the nav wrap. */
+	html.js .header-inner {
+		flex-wrap: nowrap;
+		align-items: flex-start;
+	}
+
+	html.js header nav {
+		min-width: 0;
+	}
+
+	html.js .nav-search {
+		margin-block-start: calc(var(--size-4) + (var(--size-6) - var(--size-5)) / 2);
+	}
+
+	html.js .nav-toggle {
+		display: flex;
+	}
+
+	html.js .nav-toggle,
+	html.js .nav-search {
+		color: var(--color-accent);
+	}
+
+	html.js .nav-links {
+		display: none;
+		flex-basis: 100%;
+		flex-direction: column;
+		align-items: flex-end;
+		text-align: end;
+	}
+
+	html.js .nav-links.is-open {
+		display: flex;
+	}
+}
+
+.nav-dropdown {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: var(--size-1);
+}
+
+.nav-dropdown-toggle {
+	display: inline-flex;
+	align-items: center;
+	padding: var(--size-1);
+	border: none;
+	background: none;
+	color: var(--color-primary);
+	font: inherit;
+	cursor: pointer;
+}
+
+.nav-dropdown-toggle svg {
+	width: var(--size-4);
+	height: var(--size-4);
+	transition: rotate 0.15s;
+}
+
+.nav-dropdown.is-open .nav-dropdown-toggle svg {
+	rotate: 180deg;
+}
+
+.nav-dropdown-menu {
+	display: none;
+	position: absolute;
+	inset-block-start: 100%;
+	inset-inline-start: 0;
+	z-index: 10;
+	min-width: 12rem;
+	margin: 0;
+	padding: var(--size-2);
+	list-style: none;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-2);
+	background: var(--color-surface);
+	box-shadow: var(--shadow-3);
+}
+
+.nav-dropdown.is-open .nav-dropdown-menu {
+	display: block;
+}
+
+.nav-dropdown-menu a {
+	display: block;
+	padding: var(--size-2) var(--size-3);
+	border-radius: var(--radius-2);
+	color: var(--color-text);
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a[aria-current="page"] {
+	background: var(--color-surface-subtle);
+}
+
+/* Without JS the toggle does nothing, so the menu opens on hover/focus instead. */
+html:not(.js) .nav-dropdown-toggle {
+	display: none;
+}
+
+html:not(.js) .nav-dropdown:hover .nav-dropdown-menu,
+html:not(.js) .nav-dropdown:focus-within .nav-dropdown-menu {
+	display: block;
+}
+
+.header-sticky {
+	position: sticky;
+	inset-block-start: 0;
+	z-index: 20;
+	background: var(--color-surface);
+}
+
+.header-transparent {
+	position: absolute;
+	inset-block-start: 0;
+	inset-inline: 0;
+	z-index: 20;
+	color: var(--color-on-dark);
+}
+
+.header-transparent.header-sticky {
+	position: fixed;
+	background: transparent;
+}
+
+/* Solid once scrolled, or while the mobile menu is open, so links stay readable. */
+.header-transparent.is-scrolled,
+.header-transparent:has(.nav-links.is-open) {
+	background: var(--color-surface);
+	color: var(--color-text);
+}
+
+.header-transparent:not(.is-scrolled):not(:has(.nav-links.is-open)) :is(.nav-links > a, .nav-dropdown > a, .nav-dropdown-toggle) {
+	color: inherit;
+}
+
+@media (--sm-down) {
+	html.js .nav-dropdown {
+		flex-wrap: wrap;
+	}
+
+	html.js .nav-dropdown-menu {
+		position: static;
+		flex-basis: 100%;
+		border: none;
+		box-shadow: none;
+		padding-block: 0;
+	}
+}

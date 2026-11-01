@@ -1,0 +1,5 @@
+{% include "components/post-list/post-list.liquid", posts: posts %}
+
+{% assign currentPage = pageNumber | plus: 1 %}
+{% assign paginationLabel = term | append: " pagination" %}
+{% pagination currentPage, totalPages, basePath, paginationLabel %}

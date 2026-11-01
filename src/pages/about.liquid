@@ -1,0 +1,15 @@
+---
+title: About
+description: Meet Mitchell Knight and Tonya Knight, the designers behind We Are Knights.
+fullWidth: true
+---
+
+<section class="content">
+	<p>We Are Knights is a design studio founded by Mitchell Knight and Tonya Knight, working across brand identity, web design, and print.</p>
+</section>
+
+<section class="author-grid">
+	{% for author in authors %}
+		{% include "components/author/author.liquid" %}
+	{% endfor %}
+</section>

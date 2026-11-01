@@ -6,7 +6,7 @@
     },
     "run" : {
       "enabled" : true,
-      "script" : "npm run serve"
+      "script" : "npm run start"
     }
   }
 }

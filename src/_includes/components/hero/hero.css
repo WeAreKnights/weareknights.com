@@ -1,0 +1,48 @@
+.hero {
+	position: relative;
+	display: flex;
+	align-items: flex-end;
+	min-height: 40vh;
+	padding: var(--size-8) var(--size-6);
+	background-color: var(--color-accent);
+	background-size: cover;
+	background-position: center;
+	color: var(--color-on-accent);
+	overflow: hidden;
+}
+
+/* Photo and video heroes keep the dark scrim and light text; a plain hero is the solid accent color. */
+.hero[style],
+.hero:has(.video-background) {
+	background-color: var(--color-surface-dark);
+	color: var(--color-on-dark);
+}
+
+.hero[style]::before,
+.hero:has(.video-background)::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	background: linear-gradient(to top, rgb(0 0 0 / 60%), rgb(0 0 0 / 10%));
+}
+
+.hero-inner {
+	position: relative;
+	z-index: 2;
+}
+
+.hero h1 {
+	margin: 0;
+}
+
+.hero time {
+	display: inline-block;
+	margin-block-start: var(--size-2);
+	color: var(--color-text-muted);
+}
+
+.hero[style] time,
+.hero:has(.video-background) time {
+	color: var(--color-on-dark-muted);
+}

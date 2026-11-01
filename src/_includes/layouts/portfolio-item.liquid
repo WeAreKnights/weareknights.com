@@ -1,35 +1,46 @@
 ---
-layout: layouts/base.liquid
+layout: base.liquid
 ---
-{% assign designerRecord = authors | getAuthor: designer %}
-<article class="portfolio-detail">
-  <h1>{{ title }}</h1>
-  <p class="post-meta">
-    {{ category }}
-    {% if designerRecord %} · <a href="/authors/{{ designerRecord.id }}/">{{ designerRecord.name }}</a>{% endif %}
-  </p>
-  {% if image %}<img class="reveal" src="{{ image }}" alt="{{ title }}">{% endif %}
-  <div class="post-content">
-    {{ content }}
-  </div>
 
-  {% if credits %}
-  <section class="credits reveal">
-    <h2>Credits</h2>
-    <ul class="credits-list">
-      {% for credit in credits %}
-      <li>
-        <span class="credit-role">{{ credit.role }}</span>
-        {% if credit.url %}
-          <a href="{{ credit.url }}" target="_blank" rel="noopener noreferrer">{{ credit.name }}</a>
-        {% else %}
-          <span class="credit-name">{{ credit.name }}</span>
-        {% endif %}
-      </li>
-      {% endfor %}
-    </ul>
-  </section>
-  {% endif %}
-
-  <p><a href="/portfolio/">&larr; Back to portfolio</a></p>
+{% include "components/hero/hero.liquid" %}
+{% assign pageTitle = title | default: site.title %}
+{% pageBreadcrumbSchema site, pageTitle, page.url %}
+{% assign projectDesigner = authors | where: "id", designer | first %}
+<article class="container">
+	<p>
+		{{ category }}{% if projectDesigner %} &middot; <a href="/authors/{{ projectDesigner.id }}/">{{ projectDesigner.name }}</a>{% endif %}
+	</p>
+	{{ content }}
+	{% assign projectImages = images %}
+	{% if projectImages == nil and image %}{% assign projectImages = image | split: "," %}{% endif %}
+	{% if projectImages.size > 0 %}
+		<div class="portfolio-images">
+			{% for projectImage in projectImages %}
+				{% assign imagePath = projectImage.src | default: projectImage %}
+				{% if projectImage.caption %}
+					{% assign imageAlt = title | append: ": " | append: projectImage.caption %}
+				{% else %}
+					{% assign imageAlt = title | append: " (" | append: forloop.index | append: " of " | append: forloop.length | append: ")" %}
+				{% endif %}
+				<figure>
+					{% responsiveImage imagePath, imageAlt, "(min-width: 1200px) 1200px, 100vw" %}
+					{% if projectImage.caption %}<figcaption>{{ projectImage.caption }}</figcaption>{% endif %}
+				</figure>
+			{% endfor %}
+		</div>
+	{% endif %}
+	{% if credits.size > 0 %}
+		<section class="portfolio-credits">
+			<h2>Credits</h2>
+			<ul>
+				{% for credit in credits %}
+					<li>
+						<span class="portfolio-credit-role">{{ credit.role }}</span>
+						{% if credit.url %}<a href="{{ credit.url }}" target="_blank" rel="noopener noreferrer">{{ credit.name }}<span class="visually-hidden"> (opens in a new tab)</span></a>{% else %}{{ credit.name }}{% endif %}
+					</li>
+				{% endfor %}
+			</ul>
+		</section>
+	{% endif %}
+	<p><a href="/portfolio/">&larr; Back to portfolio</a></p>
 </article>

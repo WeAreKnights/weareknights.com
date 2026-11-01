@@ -1,93 +1,54 @@
-import { IdAttributePlugin } from "@11ty/eleventy";
+// Eleventy configuration: passthrough files, collections (blog pages, categories, tags), and the modules in config/.
 
-export default function (eleventyConfig) {
-  eleventyConfig.addPlugin(IdAttributePlugin);
+import { readFileSync } from "node:fs";
+import addFilters from "./config/filters.js";
+import addShortcodes from "./config/shortcodes.js";
+import addSchemaShortcodes from "./config/schema.js";
+import addImageShortcode from "./config/image.js";
+import addComponents from "./config/components.js";
+import { paginateGroupedPosts, filterTagList } from "./config/helpers/posts.js";
 
-  // Static passthrough
-  eleventyConfig.addPassthroughCopy("src/css");
-  eleventyConfig.addPassthroughCopy("src/js");
-  eleventyConfig.addPassthroughCopy("src/img");
-  eleventyConfig.addPassthroughCopy({ "node_modules/open-props/open-props.min.css": "css/open-props.min.css" });
-  eleventyConfig.addPassthroughCopy({ "node_modules/open-props/normalize.min.css": "css/open-props.normalize.min.css" });
-  eleventyConfig.addPassthroughCopy("src/CNAME");
-  eleventyConfig.addPassthroughCopy("src/favicon.svg");
+const { postsPerPage = 10 } = JSON.parse(readFileSync(new URL("./src/_data/site.json", import.meta.url), "utf8"));
 
-  eleventyConfig.setLiquidOptions({
-    dynamicPartials: true,
-    strictFilters: false,
-  });
+export default async function (eleventyConfig) {
+	eleventyConfig.addPassthroughCopy({ "src/assets/images": "assets/images" });
+	eleventyConfig.addPassthroughCopy("src/CNAME");
+	eleventyConfig.addWatchTarget("_site/assets/.vite/manifest.json");
 
-  // 8080 collides with another local 11ty site.
-  eleventyConfig.setServerOptions({
-    port: 8090,
-  });
+	eleventyConfig.addCollection("blogPages", (collectionApi) => {
+		const posts = [...collectionApi.getFilteredByTag("posts")].reverse();
+		return paginateGroupedPosts(posts, () => ["Blog"], postsPerPage);
+	});
 
-  // Date formatting filter used throughout blog templates.
-  // timeZone: "UTC" keeps date-only front matter values (parsed as UTC
-  // midnight) from displaying as the previous day in negative UTC offsets.
-  eleventyConfig.addFilter("readableDate", (dateObj) => {
-    return new Date(dateObj).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      timeZone: "UTC",
-    });
-  });
+	eleventyConfig.addCollection("postCategoryPages", (collectionApi) => {
+		const posts = [...collectionApi.getFilteredByTag("posts")].reverse();
+		return paginateGroupedPosts(posts, (post) => post.data.categories || [], postsPerPage);
+	});
 
-  eleventyConfig.addFilter("htmlDateString", (dateObj) => {
-    return new Date(dateObj).toISOString().split("T")[0];
-  });
+	eleventyConfig.addCollection("postTagPages", (collectionApi) => {
+		const posts = [...collectionApi.getFilteredByTag("posts")].reverse();
+		return paginateGroupedPosts(posts, (post) => filterTagList(post.data.tags), postsPerPage);
+	});
 
-  eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
+	eleventyConfig.addCollection("portfolioProjects", (collectionApi) => {
+		return collectionApi.getFilteredByTag("portfolio").sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+	});
 
-  // Look up an author's full record from src/_data/authors.json by id
-  // Usage: {{ authors | getAuthor: post_author }}
-  eleventyConfig.addFilter("getAuthor", (authors, authorId) => {
-    return (authors || []).find((author) => author.id === authorId);
-  });
+	addFilters(eleventyConfig);
+	addShortcodes(eleventyConfig);
+	addSchemaShortcodes(eleventyConfig);
+	addImageShortcode(eleventyConfig);
+	await addComponents(eleventyConfig);
 
-  // Blog posts collection, newest first
-  eleventyConfig.addCollection("posts", (collectionApi) => {
-    return collectionApi.getFilteredByGlob("src/blog/*.md").sort((a, b) => b.date - a.date);
-  });
-
-  // Unique, sorted list of every category used across blog posts
-  eleventyConfig.addCollection("categoryList", (collectionApi) => {
-    const categories = new Set();
-    collectionApi.getFilteredByGlob("src/blog/*.md").forEach((post) => {
-      (post.data.categories || []).forEach((category) => categories.add(category));
-    });
-    return [...categories].sort();
-  });
-
-  // Unique, sorted list of every tag used across blog posts (excluding the
-  // implicit "posts" tag used to build the collection itself)
-  eleventyConfig.addCollection("tagList", (collectionApi) => {
-    const tags = new Set();
-    collectionApi.getFilteredByGlob("src/blog/*.md").forEach((post) => {
-      (post.data.tags || []).forEach((tag) => {
-        if (tag !== "posts") tags.add(tag);
-      });
-    });
-    return [...tags].sort();
-  });
-
-  // Portfolio projects collection
-  eleventyConfig.addCollection("portfolio", (collectionApi) => {
-    return collectionApi.getFilteredByGlob("src/portfolio/*.md").sort((a, b) => {
-      return (a.data.order ?? 0) - (b.data.order ?? 0);
-    });
-  });
-
-  return {
-    dir: {
-      input: "src",
-      output: "_site",
-      includes: "_includes",
-      data: "_data",
-    },
-    templateFormats: ["liquid", "md", "html"],
-    htmlTemplateEngine: "liquid",
-    markdownTemplateEngine: "liquid",
-  };
+	return {
+		dir: {
+			input: "src",
+			includes: "_includes",
+			layouts: "_includes/layouts",
+			output: "_site",
+		},
+		templateFormats: ["liquid", "md"],
+		htmlTemplateEngine: "liquid",
+		markdownTemplateEngine: "liquid",
+	};
 }

@@ -1,0 +1,35 @@
+---
+layout: page.liquid
+pagination:
+  data: authors
+  size: 1
+  alias: author
+permalink: "/authors/{{ author.id }}/"
+fullWidth: true
+eleventyComputed:
+  title: "{{ author.name }}"
+  description: "{{ author.bio }}"
+---
+
+<section class="content">
+	<p>{{ author.bio }}</p>
+	{% include "components/author/author-links.liquid" %}
+</section>
+
+{% assign authorProjects = collections.portfolioProjects | where: "data.designer", author.id %}
+{% if authorProjects.size > 0 %}
+	<section class="container">
+		<h2>Portfolio</h2>
+		{% assign recentProjects = authorProjects | reverse | slice: 0, 4 %}
+		{% include "components/portfolio/portfolio.liquid", items: recentProjects, isFilterable: true %}
+		<p><a href="/portfolio/?designer={{ author.id }}">View all portfolio pieces by {{ author.name }} &rarr;</a></p>
+	</section>
+{% endif %}
+
+{% assign authorPosts = collections.posts | reverse | where: "data.author", author.id %}
+{% if authorPosts.size > 0 %}
+	<section class="content">
+		<h2>Blog posts</h2>
+		{% include "components/post-list/post-list.liquid", posts: authorPosts, headingLevel: 3 %}
+	</section>
+{% endif %}

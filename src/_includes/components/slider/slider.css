@@ -1,0 +1,114 @@
+@import "../../../assets/styles/_breakpoints.css";
+
+.slider {
+	--slider-gap: var(--size-4);
+	--slider-current-columns: var(--slider-columns, 3);
+}
+
+@media (--md-down) {
+	.slider {
+		--slider-current-columns: min(var(--slider-columns, 3), 2);
+	}
+}
+
+@media (--sm-down) {
+	.slider {
+		--slider-current-columns: 1;
+	}
+}
+
+.slider-track {
+	display: flex;
+	gap: var(--slider-gap);
+	overflow-x: auto;
+	overscroll-behavior-x: contain;
+	scroll-snap-type: x mandatory;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.slider-track {
+		scroll-behavior: smooth;
+	}
+}
+
+html.js .slider-track {
+	scrollbar-width: none;
+}
+
+html.js .slider-track::-webkit-scrollbar {
+	display: none;
+}
+
+.slider-track > * {
+	flex: 0 0 calc((100% - (var(--slider-current-columns) - 1) * var(--slider-gap)) / var(--slider-current-columns));
+	min-width: 0;
+	scroll-snap-align: start;
+}
+
+.slider-track img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.slider-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--size-8);
+	height: var(--size-8);
+	padding: 0;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-round);
+	background: var(--color-surface);
+	color: var(--color-text);
+	cursor: pointer;
+}
+
+.slider-button svg {
+	width: var(--size-5);
+	height: var(--size-5);
+}
+
+.slider-controls {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: var(--size-3);
+	margin-block-start: var(--size-3);
+}
+
+.slider-dots {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.slider-dot {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--size-7);
+	height: var(--size-7);
+	padding: 0;
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+
+.slider-dot::before {
+	content: "";
+	width: var(--size-3);
+	height: var(--size-3);
+	border: 2px solid var(--color-text-muted);
+	border-radius: var(--radius-round);
+}
+
+.slider-dot[aria-current="true"]::before {
+	background: var(--color-text-muted);
+}
+
+.slider [hidden] {
+	display: none;
+}

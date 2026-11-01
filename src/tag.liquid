@@ -1,0 +1,15 @@
+---
+layout: page.liquid
+pagination:
+  data: collections.postTagPages
+  size: 1
+  alias: tagPage
+permalink: "/blog/tag/{{ tagPage.term | slugify }}/{% if tagPage.pageNumber > 0 %}page/{{ tagPage.pageNumber | plus: 1 }}/{% endif %}"
+eleventyComputed:
+  title: "{{ tagPage.term }}"
+  description: "Posts tagged {{ tagPage.term }}."
+---
+
+{% assign slug = tagPage.term | slugify %}
+{% assign basePath = "/blog/tag/" | append: slug %}
+{% include "partials/post-archive.liquid", posts: tagPage.posts, pageNumber: tagPage.pageNumber, totalPages: tagPage.totalPages, term: tagPage.term, basePath: basePath %}

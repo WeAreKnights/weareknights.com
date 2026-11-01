@@ -1,7 +1,10 @@
 ---
-layout: layouts/base.liquid
+layout: base.liquid
 ---
-<article class="page">
-  <h1>{{ title }}</h1>
-  {{ content }}
+
+{% include "components/hero/hero.liquid" %}
+{% assign pageTitle = title | default: site.title %}
+{% pageBreadcrumbSchema site, pageTitle, page.url %}
+<article{% unless fullWidth %} class="content"{% endunless %}>
+	{{ content }}
 </article>

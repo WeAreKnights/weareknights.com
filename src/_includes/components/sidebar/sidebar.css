@@ -1,0 +1,79 @@
+@import "../../../assets/styles/_breakpoints.css";
+
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: var(--size-6);
+	padding: var(--size-6);
+}
+
+.sidebar-widget h2 {
+	margin-block: 0 var(--size-2);
+	font-size: var(--step-1);
+}
+
+.sidebar-widget ul:not(.social) {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+@media (--md-up) {
+	@supports (grid-template-columns: subgrid) {
+		.has-sidebar {
+			--sidebar-width: 20rem;
+			--sidebar-gap: var(--size-7);
+			--sidebar-gutter: var(--size-6);
+			--sidebar-main-width: calc(75rem - var(--sidebar-width) - var(--sidebar-gap) - 2 * var(--sidebar-gutter));
+			display: grid;
+		}
+
+		.has-sidebar-right {
+			grid-template-columns:
+				[full-start] minmax(var(--sidebar-gutter), 1fr)
+				[main-start] minmax(0, var(--sidebar-main-width)) [main-end]
+				var(--sidebar-gap)
+				[side-start] var(--sidebar-width) [side-end]
+				minmax(var(--sidebar-gutter), 1fr) [full-end];
+		}
+
+		.has-sidebar-left {
+			grid-template-columns:
+				[full-start] minmax(var(--sidebar-gutter), 1fr)
+				[side-start] var(--sidebar-width) [side-end]
+				var(--sidebar-gap)
+				[main-start] minmax(0, var(--sidebar-main-width)) [main-end]
+				minmax(var(--sidebar-gutter), 1fr) [full-end];
+		}
+
+		.has-sidebar > main {
+			display: grid;
+			grid-column: full-start / full-end;
+			grid-row: 1 / span 2;
+			grid-template-columns: subgrid;
+			grid-template-rows: subgrid;
+		}
+
+		.has-sidebar > main > .hero {
+			grid-column: full-start / full-end;
+		}
+
+		.has-sidebar > main > .content {
+			grid-column: main-start / main-end;
+			margin-inline: 0;
+			padding-inline: 0;
+		}
+
+		.has-sidebar > .sidebar {
+			grid-column: side-start / side-end;
+			grid-row: 2;
+			padding-inline: 0;
+		}
+
+		.sidebar-sticky {
+			position: sticky;
+			top: var(--size-4);
+			align-self: start;
+		}
+	}
+}

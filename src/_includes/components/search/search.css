@@ -1,0 +1,18 @@
+.search {
+	--pagefind-ui-scale: 1;
+	--pagefind-ui-primary: var(--color-primary);
+	--pagefind-ui-text: var(--color-text);
+	--pagefind-ui-background: var(--color-surface);
+	--pagefind-ui-border: var(--color-border);
+	--pagefind-ui-tag: var(--color-surface-subtle);
+	--pagefind-ui-border-width: 1px;
+	--pagefind-ui-border-radius: var(--radius-2);
+	--pagefind-ui-font: inherit;
+	min-height: var(--size-10);
+}
+
+/* The footer's search popup (opened by the header's search button). */
+.popup[data-id="search"] {
+	max-width: 40rem;
+	padding-block-start: var(--size-8);
+}

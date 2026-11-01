@@ -1,0 +1,46 @@
+:root {
+	--font-body: "Jost", var(--font-sans);
+	--font-heading: var(--font-body);
+
+	/* Fluid type scale. Each step interpolates between a 320px and a 1200px viewport: at 320px the body is 16px on a minor third (1.2) ratio, at 1200px it is 18px on a perfect fourth (1.333). The ratio widening with the viewport keeps the hierarchy intact on phones without oversized headings. Values are clamp(min, rem + vw, max), so they still respond to browser zoom and text-size settings. */
+	--step--1: clamp(0.8333rem, calc(0.8295rem + 0.0193vw), 0.8440rem);
+	--step-0: clamp(1.0000rem, calc(0.9545rem + 0.2273vw), 1.1250rem);
+	--step-1: clamp(1.2000rem, calc(1.0910rem + 0.5448vw), 1.4996rem);
+	--step-2: clamp(1.4400rem, calc(1.2367rem + 1.0164vw), 1.9990rem);
+	--step-3: clamp(1.7280rem, calc(1.3874rem + 1.7030vw), 2.6647rem);
+	--step-4: clamp(2.0736rem, calc(1.5360rem + 2.6880vw), 3.5520rem);
+	--step-5: clamp(2.4883rem, calc(1.6714rem + 4.0845vw), 4.7348rem);
+}
+
+/* The root stays at 100% (16px by default) so rem sizes follow the visitor's browser text-size setting. */
+html {
+	font-size: 100%;
+}
+
+body {
+	font-family: var(--font-body);
+	font-size: var(--step-0);
+	font-weight: var(--font-weight-3);
+	color: var(--color-text);
+	line-height: var(--font-lineheight-3);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--font-heading);
+	font-weight: var(--font-weight-5);
+	letter-spacing: 0.165rem;
+	text-transform: uppercase;
+	line-height: var(--font-lineheight-1);
+	text-wrap: balance;
+}
+
+h1 { font-size: var(--step-4); }
+h2 { font-size: var(--step-3); }
+h3 { font-size: var(--step-2); }
+h4 { font-size: var(--step-1); }
+h5 { font-size: var(--step-0); }
+h6 { font-size: var(--step--1); }
+
+a {
+	color: var(--color-primary);
+}

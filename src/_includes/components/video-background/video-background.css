@@ -1,0 +1,29 @@
+.video-section {
+	position: relative;
+	overflow: hidden;
+}
+
+.video-background {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	container-type: size;
+	pointer-events: none;
+}
+
+.video-background iframe {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100cqw;
+	height: 100cqh;
+	min-width: 177.78cqh;
+	min-height: 56.25cqw;
+	transform: translate(-50%, -50%);
+	border: none;
+}
+
+.video-content {
+	position: relative;
+	z-index: 1;
+}

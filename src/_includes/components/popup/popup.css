@@ -1,0 +1,29 @@
+.popup {
+	max-width: 32rem;
+	width: calc(100% - var(--size-8));
+	padding: var(--size-6);
+	border: none;
+	border-radius: var(--radius-3);
+	box-shadow: var(--shadow-5);
+}
+
+.popup::backdrop {
+	background: rgb(0 0 0 / 60%);
+}
+
+.popup-close {
+	position: absolute;
+	top: var(--size-3);
+	right: var(--size-3);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--size-7);
+	height: var(--size-7);
+	border: none;
+	background: none;
+	color: inherit;
+	font-size: var(--step-2);
+	line-height: 1;
+	cursor: pointer;
+}

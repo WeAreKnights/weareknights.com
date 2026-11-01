@@ -1,0 +1,27 @@
+.hours {
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-2);
+}
+
+.hours summary {
+	padding: var(--size-3) var(--size-4);
+	font-weight: var(--font-weight-6);
+	cursor: pointer;
+}
+
+.hours table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.hours th,
+.hours td {
+	padding: var(--size-2) var(--size-4);
+	border-top: 1px solid var(--color-border-subtle);
+	text-align: start;
+}
+
+.hours tr[aria-current="date"] {
+	background: var(--color-surface-subtle);
+	font-weight: var(--font-weight-6);
+}

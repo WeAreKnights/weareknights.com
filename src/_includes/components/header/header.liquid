@@ -1,0 +1,62 @@
+{% assign isSticky = site.header.sticky %}
+{% if headerSticky != nil %}{% assign isSticky = headerSticky %}{% endif %}
+{% assign isTransparent = site.header.transparent %}
+{% if headerTransparent != nil %}{% assign isTransparent = headerTransparent %}{% endif %}
+<header{% if isSticky or isTransparent %} class="{% if isSticky %}header-sticky{% endif %}{% if isSticky and isTransparent %} {% endif %}{% if isTransparent %}header-transparent{% endif %}"{% endif %}>
+	<div class="header-inner">
+		<nav aria-label="Primary">
+			<a href="/">
+				<img src="{{ site.logo }}" alt="{{ site.title }}" width="130" height="32">
+			</a>
+			<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-links">
+				<svg viewBox="0 0 24 24" aria-hidden="true">
+					<path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+				</svg>
+				<span class="visually-hidden">Menu</span>
+			</button>
+			<div class="nav-links" id="nav-links">
+				{% for item in nav %}
+					{% if item.children and item.children.size > 0 %}
+						<div class="nav-dropdown">
+							{% if item.url %}
+								{% assign link = item %}
+								{% include "components/header/nav-link.liquid" %}
+							{% endif %}
+							<button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-controls="nav-menu-{{ forloop.index }}">
+								{% if item.url %}<span class="visually-hidden">{{ item.label }} submenu</span>{% else %}<span>{{ item.label }}</span>{% endif %}
+								<svg viewBox="0 0 24 24" aria-hidden="true">
+									<path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+								</svg>
+							</button>
+							<ul class="nav-dropdown-menu" id="nav-menu-{{ forloop.index }}">
+								{% for child in item.children %}
+									<li>
+										{% assign link = child %}
+										{% include "components/header/nav-link.liquid" %}
+									</li>
+								{% endfor %}
+							</ul>
+						</div>
+					{% else %}
+						{% assign link = item %}
+						{% include "components/header/nav-link.liquid" %}
+					{% endif %}
+				{% endfor %}
+			</div>
+		</nav>
+		<button type="button" class="nav-search" data-popup-open="search">
+			<svg viewBox="0 0 24 24" aria-hidden="true">
+				<path d="m21 21-4.3-4.3M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+			</svg>
+			<span class="visually-hidden">Search</span>
+		</button>
+		{% if site.business.telephone != "" %}
+			<a class="button nav-button" href="tel:{{ site.business.telephone }}">
+				<svg viewBox="0 0 24 24" aria-hidden="true">
+					<path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z" fill="currentColor" />
+				</svg>
+				<span>{{ site.business.telephone }}</span>
+			</a>
+		{% endif %}
+	</div>
+</header>

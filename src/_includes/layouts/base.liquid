@@ -1,57 +1,28 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% if title %}{{ title }} · {% endif %}{{ site.title }}</title>
-  <meta name="description" content="{{ description | default: site.description }}">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geom:wght@300;400&display=swap">
-  <link rel="stylesheet" href="/css/open-props.min.css">
-  <link rel="stylesheet" href="/css/open-props.normalize.min.css">
-  <link rel="stylesheet" href="/css/style.css">
+	<script>document.documentElement.classList.add("js")</script>
+	{% include "partials/head.liquid" %}
 </head>
 <body>
-  <header class="site-header">
-    <div class="wrap">
-      <a class="site-title" href="/">
-        <img class="site-logo" src="/img/logo.svg" alt="{{ site.title }}">
-      </a>
-      <nav class="site-nav">
-        <ul class="site-nav-list">
-          {% for item in site.nav %}
-          <li><a href="{{ item.url }}">{{ item.text }}</a></li>
-          {% endfor %}
-        </ul>
-        <details class="nav-toggle">
-          <summary class="nav-toggle-btn">
-            <span class="nav-toggle-icon" aria-hidden="true">
-              <span class="line"></span>
-              <span class="line"></span>
-              <span class="line"></span>
-            </span>
-            <span class="visually-hidden">Menu</span>
-          </summary>
-          <ul class="site-nav-list">
-            {% for item in site.nav %}
-            <li><a href="{{ item.url }}">{{ item.text }}</a></li>
-            {% endfor %}
-          </ul>
-        </details>
-      </nav>
-    </div>
-  </header>
-
-  <main class="wrap">
-    {{ content }}
-  </main>
-
-  <footer class="site-footer">
-    <div class="wrap">
-      <small>&copy; {% year %} {{ site.title }}</small>
-    </div>
-  </footer>
+	<a class="skip-link" href="#main-content">Skip to content</a>
+	{% include "components/header/header.liquid" %}
+	{% assign hasSidebar = false %}
+	{% assign sidebarHtml = "" | sidebarContent %}
+	{% if sidebar == "left" or sidebar == "right" %}
+		{% if sidebarHtml != "" %}
+			{% unless fullWidth %}{% assign hasSidebar = true %}{% endunless %}
+		{% endif %}
+	{% endif %}
+	{% if hasSidebar %}<div class="has-sidebar has-sidebar-{{ sidebar }}">{% endif %}
+	<main id="main-content"{% unless noindex %} data-pagefind-body{% endunless %}>
+		{{ content }}
+	</main>
+	{% if hasSidebar %}
+	{% include "components/sidebar/sidebar.liquid" %}
+	</div>
+	{% endif %}
+	{% include "partials/footer.liquid" %}
+	<script type="module" src="{{ manifest.js }}"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
     "id": "mitchell",
     "name": "Mitchell Knight",
     "bio": "Designer at We Are Knights, focused on brand identity and print.",
-    "avatar": "/img/authors/mitchell.svg",
+    "avatar": "authors/mitchell.svg",
     "social": [
       { "platform": "github", "label": "GitHub", "url": "https://github.com/mitchellknight" },
       { "platform": "dribbble", "label": "Dribbble", "url": "https://dribbble.com/weareknights" }
@@ -13,6 +13,6 @@
     "id": "tonya",
     "name": "Tonya Knight",
     "bio": "Designer at We Are Knights, focused on web and product design.",
-    "avatar": "/img/authors/tonya.svg"
+    "avatar": "authors/tonya.svg"
   }
 ]

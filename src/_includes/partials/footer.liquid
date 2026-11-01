@@ -1,0 +1,17 @@
+<footer>
+	<div class="footer-inner">
+		{% social site.social %}
+		<div class="footer-row">
+			<small>&copy; {{ "now" | date: "%Y" }} {{ site.title }}</small>
+			<div class="footer-links">
+				<nav aria-label="Footer">
+					<a href="/accessibility/">Accessibility</a>
+					<a href="/privacy/">Privacy</a>
+				</nav>
+			</div>
+		</div>
+	</div>
+	{% popup "search", false, "Search" %}
+		{% search %}
+	{% endpopup %}
+</footer>

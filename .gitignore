@@ -1,6 +1,5 @@
-node_modules/
-_site/
-.cache/
+node_modules
+_site
 .DS_Store
-
-.claude/
+src/api/.env
+.claude/settings.local.json

@@ -1,0 +1,155 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Octane Ignitor site data",
+	"description": "Global site settings in src/_data/site.json. Fields stay present but blank when unused — never delete them.",
+	"type": "object",
+	"required": ["title", "description", "image", "logo", "url", "agency", "timeZone", "postsPerPage", "googleAnalyticsId", "googleAdsId", "googleAdsConversion", "metaPixelId", "googleFonts", "header", "social", "business"],
+	"properties": {
+		"$schema": { "type": "string" },
+		"title": {
+			"type": "string",
+			"description": "Site or business name. Used in the header, page titles, og:site_name, embeds, and as the publisher and author in schema markup."
+		},
+		"description": {
+			"type": "string",
+			"description": "Default meta and og:description for pages that don't set their own. Aim for 150–160 characters."
+		},
+		"image": {
+			"type": "string",
+			"description": "Default Open Graph image, root-relative (e.g. /assets/images/opengraph.png). Rendered at 1200×630."
+		},
+		"logo": {
+			"type": "string",
+			"description": "Site logo, root-relative. An SVG is rasterized to a PNG at build for the BlogPosting publisher logo; a PNG or JPG is used as-is."
+		},
+		"url": {
+			"type": "string",
+			"pattern": "^https?://[^/]+$",
+			"description": "Production origin with no trailing slash (e.g. https://example.com). Drives canonical URLs, the sitemap, robots.txt, Open Graph URLs, and all schema markup."
+		},
+		"agency": {
+			"type": "string",
+			"description": "Agency credit shown in the footer."
+		},
+		"timeZone": {
+			"type": "string",
+			"pattern": "^[A-Za-z_]+(/[A-Za-z_+-]+)+$",
+			"description": "IANA time zone of the business (e.g. America/New_York for Atlanta, GA). The Hours component uses it to decide what 'today' is."
+		},
+		"postsPerPage": {
+			"type": "integer",
+			"minimum": 1,
+			"description": "Posts per page on the blog, category, and tag listings. Restart the dev server after changing it."
+		},
+		"googleAnalyticsId": {
+			"type": "string",
+			"pattern": "^(G-[A-Z0-9]+)?$",
+			"description": "GA4 measurement ID (G-XXXXXXXXXX). Blank disables analytics."
+		},
+		"googleAdsId": {
+			"type": "string",
+			"pattern": "^(AW-[0-9]+)?$",
+			"description": "Google Ads tag ID (AW-XXXXXXXXX). Blank disables it. Loads through the same gtag.js as Analytics."
+		},
+		"googleAdsConversion": {
+			"type": "string",
+			"pattern": "^(AW-[0-9]+/[A-Za-z0-9_-]+)?$",
+			"description": "Google Ads conversion as AW-XXXXXXXXX/label (the send_to value). Fired when a contact form succeeds. Needs googleAdsId. Blank disables conversions."
+		},
+		"metaPixelId": {
+			"type": "string",
+			"pattern": "^([0-9]{8,20})?$",
+			"description": "Meta (Facebook) Pixel ID, digits only. Blank disables it. Fires PageView on every page and Lead when a contact form succeeds."
+		},
+		"header": {
+			"type": "object",
+			"description": "Site-wide header behavior. A page can override either with headerSticky / headerTransparent in its front matter.",
+			"properties": {
+				"sticky": { "type": "boolean", "description": "Keep the header pinned to the top while scrolling." },
+				"transparent": { "type": "boolean", "description": "Overlay the header on the page's first section (e.g. a hero) with light text. It turns solid once the page scrolls (sticky) or the mobile menu opens." }
+			}
+		},
+		"googleFonts": {
+			"type": "string",
+			"description": "Google Fonts css2 query string without the leading ? or display param (e.g. family=Lato:wght@400;700&family=Montserrat:wght@700). Blank loads no fonts."
+		},
+		"social": {
+			"type": "object",
+			"description": "Profile URLs. Feeds the social icons and the sameAs list in schema markup, and the Facebook and Instagram embeds' fallback links. Blank entries are skipped.",
+			"properties": {
+				"facebook": { "$ref": "#/definitions/optionalUrl" },
+				"instagram": { "$ref": "#/definitions/optionalUrl" },
+				"x": { "$ref": "#/definitions/optionalUrl" },
+				"linkedin": { "$ref": "#/definitions/optionalUrl" },
+				"youtube": { "$ref": "#/definitions/optionalUrl" }
+			},
+			"additionalProperties": { "$ref": "#/definitions/optionalUrl" }
+		},
+		"business": {
+			"type": "object",
+			"description": "schema.org LocalBusiness details. Blank groups are omitted from the JSON-LD.",
+			"properties": {
+				"type": {
+					"type": "string",
+					"description": "A schema.org LocalBusiness subtype.",
+					"examples": ["LocalBusiness", "Restaurant", "Dentist", "HomeAndConstructionBusiness", "SportsActivityLocation"]
+				},
+				"telephone": {
+					"type": "string",
+					"description": "Also drives the header's click-to-call button. Blank hides the button."
+				},
+				"email": {
+					"type": "string",
+					"pattern": "^([^@\\s]+@[^@\\s]+)?$",
+					"description": "Public contact email for schema markup."
+				},
+				"priceRange": {
+					"type": "string",
+					"description": "Rough price band, e.g. $$."
+				},
+				"address": {
+					"type": "object",
+					"description": "Postal address. Omitted from schema unless at least one of street, city, region, or postalCode is set.",
+					"properties": {
+						"street": { "type": "string" },
+						"city": { "type": "string" },
+						"region": { "type": "string", "description": "State or province, e.g. GA." },
+						"postalCode": { "type": "string" },
+						"country": { "type": "string", "description": "Two-letter country code, e.g. US." }
+					}
+				},
+				"geo": {
+					"type": "object",
+					"description": "Coordinates. Omitted from schema unless both latitude and longitude are set.",
+					"properties": {
+						"latitude": { "type": ["string", "number"] },
+						"longitude": { "type": ["string", "number"] }
+					}
+				},
+				"openingHours": {
+					"type": "array",
+					"description": "schema.org OpeningHoursSpecification objects, emitted as-is.",
+					"items": {
+						"type": "object",
+						"required": ["@type", "dayOfWeek", "opens", "closes"],
+						"properties": {
+							"@type": { "const": "OpeningHoursSpecification" },
+							"dayOfWeek": {
+								"type": "array",
+								"items": { "enum": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] }
+							},
+							"opens": { "type": "string", "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$" },
+							"closes": { "type": "string", "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$" }
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"optionalUrl": {
+			"type": "string",
+			"pattern": "^(https?://.+)?$"
+		}
+	}
+}

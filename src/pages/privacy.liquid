@@ -1,0 +1,88 @@
+---
+title: Privacy
+description: Our privacy policy.
+modified: 2026-10-29
+---
+
+<p>This Privacy Policy explains how {{ site.title }} ("we", "us", or "our") collects, uses, and shares information when you visit this website.</p>
+
+<h2>Information we collect</h2>
+
+<p>We use Google Analytics and Microsoft Clarity to understand how visitors use this site. These tools may collect information such as your IP address, browser and device type, pages visited, and how you interact with the site. Microsoft Clarity may also record session activity, such as clicks, scrolling, and mouse movement, to help us understand user behavior and improve the site.</p>
+
+{% if site.googleAdsId != "" %}
+<p>We use Google Ads to measure the performance of our advertising. Google may set cookies or use similar technologies to record that you visited this site, and when you submit a form, to record that action as a conversion. This helps us understand which ads lead to inquiries. Google may use this information in line with its own privacy policy.</p>
+{% endif %}
+
+{% if site.metaPixelId != "" %}
+<p>We use the Meta Pixel, a tool provided by Meta Platforms, Inc. (Facebook and Instagram). It collects information such as your IP address, browser and device type, the pages you view, and actions such as submitting a form, and shares it with Meta. We use it to measure the effectiveness of our advertising and, where permitted, to show our ads to relevant audiences on Meta's platforms. Meta's use of this information is governed by its own privacy policy.</p>
+{% endif %}
+
+<p>If you fill out a form on this site, we collect the information you provide, such as your name, email address, and message.</p>
+
+{% if site.googleAdsId != "" or site.metaPixelId != "" %}
+<h2>Advertising</h2>
+
+<p>Advertising and measurement providers used on this site may combine information about your visit with information they already hold about you. Their use of your information is governed by their own privacy policies:</p>
+
+<ul>
+	{% if site.googleAdsId != "" %}<li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy<span class="visually-hidden"> (opens in a new tab)</span></a></li>{% endif %}
+	{% if site.metaPixelId != "" %}<li><a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener noreferrer">Meta Privacy Policy<span class="visually-hidden"> (opens in a new tab)</span></a></li>{% endif %}
+</ul>
+{% endif %}
+
+<h2>Embedded video content</h2>
+
+<p>This site includes videos embedded from YouTube and Vimeo. When you view or interact with an embedded video, YouTube (operated by Google) or Vimeo may collect data about your visit, including through cookies, independent of your interaction with the video player. Their use of your information is governed by their own privacy policies:</p>
+
+<ul>
+	<li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+	<li><a href="https://vimeo.com/privacy" target="_blank" rel="noopener noreferrer">Vimeo Privacy Policy<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+</ul>
+
+<h2>Cookies</h2>
+
+<p>Cookies are small text files stored on your device. This site uses cookies set by the analytics, advertising, and video providers described above to enable their functionality. You can control or delete cookies through your browser settings, though doing so may affect how parts of this site function.</p>
+
+<h2>Hosting</h2>
+
+<p>This site is hosted on a dedicated server managed by {{ site.agency }} on our behalf. Standard server access logs may be retained as part of normal server administration and security monitoring.</p>
+
+<h2>How we use your information</h2>
+
+<p>We use the information we collect to operate and improve this site, respond to inquiries submitted through our forms, and understand how visitors use our content.</p>
+
+<h2>Your choices</h2>
+
+<p>You can opt out of Google Analytics tracking using the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics Opt-out Browser Add-on<span class="visually-hidden"> (opens in a new tab)</span></a>. Microsoft Clarity honors browser Do Not Track signals and provides opt-out information on its <a href="https://clarity.microsoft.com/" target="_blank" rel="noopener noreferrer">website<span class="visually-hidden"> (opens in a new tab)</span></a>.</p>
+
+{% if site.googleAdsId != "" %}
+<p>You can control how Google personalizes the ads you see in your <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">Google Ads Settings<span class="visually-hidden"> (opens in a new tab)</span></a>.</p>
+{% endif %}
+
+{% if site.metaPixelId != "" %}
+<p>You can control the ads you see on Facebook and Instagram in your <a href="https://www.facebook.com/adpreferences/" target="_blank" rel="noopener noreferrer">Meta ad preferences<span class="visually-hidden"> (opens in a new tab)</span></a>.</p>
+{% endif %}
+
+<p>If you would like us to access, correct, or delete information we hold about you, please contact us using the information below.</p>
+
+<h2>Children's privacy</h2>
+
+<p>This site is not directed at children under 13, and we do not knowingly collect personal information from children.</p>
+
+<h2>Changes to this policy</h2>
+
+<p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated revision date.</p>
+
+<h2>Contact us</h2>
+
+<p>If you have questions about this Privacy Policy, please contact us:</p>
+
+{% assign addressLine = site.business.address | formatAddress %}
+<ul>
+	{% if site.business.telephone != "" %}<li>Phone: {{ site.business.telephone }}</li>{% endif %}
+	{% if site.business.email != "" %}<li>E-mail: {{ site.business.email }}</li>{% endif %}
+	{% if addressLine != "" %}<li>Postal address: {{ addressLine }}</li>{% endif %}
+</ul>
+
+<p><small>This statement was last updated on {{ modified | readableDate }}.</small></p>

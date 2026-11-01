@@ -1,0 +1,24 @@
+@import "../../../assets/styles/_breakpoints.css";
+
+.map {
+	margin-block: var(--size-6);
+}
+
+.map iframe {
+	display: block;
+	width: 100%;
+	aspect-ratio: 4 / 3;
+	border: var(--border-size-1) solid var(--color-border);
+	border-radius: var(--radius-3);
+}
+
+@media (--sm-up) {
+	.map iframe {
+		aspect-ratio: 16 / 7;
+	}
+}
+
+.map-fallback {
+	margin: var(--size-2) 0 0;
+	text-align: center;
+}

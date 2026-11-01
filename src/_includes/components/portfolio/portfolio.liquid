@@ -1,0 +1,44 @@
+<div class="portfolio">
+	{% if isFilterable %}
+		{% assign designerIds = items | map: "data" | map: "designer" | uniq %}
+		{% assign categories = items | map: "data" | map: "category" | uniq %}
+		{% if designerIds.size > 1 or categories.size > 1 %}
+			<div class="portfolio-filters">
+				{% if designerIds.size > 1 %}
+					<div class="portfolio-filter-group" data-filter-group="designer">
+						<span>Designer</span>
+						<button type="button" class="portfolio-filter-button" data-filter-value="all" aria-pressed="true">All</button>
+						{% for designerId in designerIds %}
+							{% assign designer = authors | where: "id", designerId | first %}
+							<button type="button" class="portfolio-filter-button" data-filter-value="{{ designerId }}" aria-pressed="false">{{ designer.name | default: designerId }}</button>
+						{% endfor %}
+					</div>
+				{% endif %}
+				{% if categories.size > 1 %}
+					<div class="portfolio-filter-group" data-filter-group="category">
+						<span>Category</span>
+						<button type="button" class="portfolio-filter-button" data-filter-value="all" aria-pressed="true">All</button>
+						{% for category in categories %}
+							<button type="button" class="portfolio-filter-button" data-filter-value="{{ category | slugify }}" aria-pressed="false">{{ category }}</button>
+						{% endfor %}
+					</div>
+				{% endif %}
+			</div>
+		{% endif %}
+	{% endif %}
+	<div class="portfolio-grid">
+		{% for item in items %}
+			{% assign cover = item.data.images | first | default: item.data.image %}
+			{% assign coverPath = cover.src | default: cover %}
+			<div class="portfolio-tile" data-designer="{{ item.data.designer }}" data-category="{{ item.data.category | slugify }}">
+				<a href="{{ item.url }}">
+					{% if coverPath %}{% responsiveImage coverPath, item.data.title, "(min-width: 640px) 50vw, 100vw" %}{% endif %}
+					<div class="portfolio-tile-overlay">
+						<h3>{{ item.data.title }}</h3>
+						<p>{{ item.data.category }}</p>
+					</div>
+				</a>
+			</div>
+		{% endfor %}
+	</div>
+</div>

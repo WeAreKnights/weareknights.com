@@ -1,3 +1,7 @@
 {
-  "layout": "layouts/portfolio-item.liquid"
+	"layout": "portfolio-item.liquid",
+	"tags": "portfolio",
+	"eleventyComputed": {
+		"permalink": "/portfolio/{{ page.fileSlug }}/"
+	}
 }

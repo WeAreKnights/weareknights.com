@@ -1,0 +1,1 @@
+{% if variant == "solid" %}{% assign pillClass = "pill pill-solid" %}{% else %}{% assign pillClass = "pill" %}{% endif %}{% if href %}<a class="{{ pillClass }}" href="{{ href }}">{{ label }}</a>{% else %}<span class="{{ pillClass }}">{{ label }}</span>{% endif %}

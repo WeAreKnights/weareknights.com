@@ -1,18 +1,26 @@
 {
-  "name": "weareknights.com",
-  "version": "1.0.0",
-  "description": "Portfolio site for designers Mitchell Knight and Tonya Knight",
-  "type": "module",
-  "scripts": {
-    "build": "eleventy",
-    "serve": "eleventy --serve",
-    "debug": "DEBUG=Eleventy* eleventy"
-  },
-  "license": "UNLICENSED",
-  "devDependencies": {
-    "@11ty/eleventy": "^3.1.6"
-  },
-  "dependencies": {
-    "open-props": "^1.7.23"
-  }
+	"name": "weareknights.com",
+	"version": "0.1.0",
+	"description": "Portfolio site for designers Mitchell Knight and Tonya Knight",
+	"type": "module",
+	"scripts": {
+		"start": "npm run watch:assets & eleventy --serve; wait",
+		"watch:assets": "vite build --watch",
+		"build:assets": "vite build",
+		"build": "npm run build:assets && eleventy && npm run build:search",
+		"build:search": "pagefind --site _site",
+		"new:component": "node scripts/new-component.js"
+	},
+	"dependencies": {
+		"@11ty/eleventy-img": "^7",
+		"open-props": "^1"
+	},
+	"devDependencies": {
+		"@11ty/eleventy": "^3",
+		"pagefind": "^1",
+		"vite": "^8"
+	},
+	"allowScripts": {
+		"fsevents@2.3.3": true
+	}
 }

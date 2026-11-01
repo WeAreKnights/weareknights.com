@@ -1,0 +1,7 @@
+{
+	"layout": "page.liquid",
+	"tags": "pages",
+	"eleventyComputed": {
+		"permalink": "/{{ page.fileSlug }}/"
+	}
+}

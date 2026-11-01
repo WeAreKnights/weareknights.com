@@ -1,22 +1,25 @@
 ---
-layout: layouts/base.liquid
-title: Home
+layout: base.liquid
+title: We Are Knights
+description: Design portfolio and studio journal of Mitchell Knight and Tonya Knight.
+fullWidth: true
 ---
-<section class="hero">
-  <h1>We Are Knights</h1>
-  <p>A two-person design studio run by <a href="/authors/mitchell/">Mitchell</a> & <a href="/authors/tonya/">Tonya</a> Knight. We create <a href="/portfolio/?category=branding">brand identities</a>, <a href="/portfolio/?category=web">web products</a>, & <a href="/portfolio/?category=print">print work</a> that last.</p>
+
+<section class="content">
+	<h1>We Are Knights</h1>
+	<p>A two-person design studio run by <a href="/authors/mitchell/">Mitchell</a> &amp; <a href="/authors/tonya/">Tonya</a> Knight. We create <a href="/portfolio/?category=branding">brand identities</a>, <a href="/portfolio/?category=web">web products</a>, &amp; <a href="/portfolio/?category=print">print work</a> that last.</p>
 </section>
 
-<section class="reveal">
-  <h2>Recent work</h2>
-  {% assign recentPortfolio = collections.portfolio | reverse | slice: 0, 4 %}
-  {% include "partials/portfolio-index.liquid", items: recentPortfolio %}
-  <p><a href="/portfolio/">View the full portfolio &rarr;</a></p>
+<section class="container">
+	<h2>Recent work</h2>
+	{% assign recentProjects = collections.portfolioProjects | reverse | slice: 0, 4 %}
+	{% include "components/portfolio/portfolio.liquid", items: recentProjects %}
+	<p><a href="/portfolio/">View the full portfolio &rarr;</a></p>
 </section>
 
-<section class="reveal">
-  <h2>From the blog</h2>
-  {% assign recentPosts = collections.posts | slice: 0, 3 %}
-  {% include "partials/blog-index.liquid", posts: recentPosts %}
-  <p><a href="/blog/">Read the blog &rarr;</a></p>
+<section class="content">
+	<h2>From the blog</h2>
+	{% assign recentPosts = collections.posts | reverse | slice: 0, 3 %}
+	{% include "components/post-list/post-list.liquid", posts: recentPosts, headingLevel: 3 %}
+	<p><a href="/blog/">Read the blog &rarr;</a></p>
 </section>

@@ -1,10 +1,58 @@
 {
-  "title": "We Are Knights",
-  "description": "Design portfolio and studio journal of Mitchell Knight and Tonya Knight.",
-  "url": "https://weareknights.com",
-  "nav": [
-    { "text": "Portfolio", "url": "/portfolio/" },
-    { "text": "Blog", "url": "/blog/" },
-    { "text": "About", "url": "/about/" }
-  ]
+	"$schema": "../../config/site.schema.json",
+	"title": "We Are Knights",
+	"description": "Design portfolio and studio journal of Mitchell Knight and Tonya Knight.",
+	"image": "/assets/images/opengraph.png",
+	"logo": "/assets/images/logo.svg",
+	"url": "https://weareknights.com",
+	"agency": "Octane Marketing Solutions Inc.",
+	"timeZone": "America/New_York",
+	"postsPerPage": 10,
+	"googleAnalyticsId": "",
+	"googleAdsId": "",
+	"googleAdsConversion": "",
+	"metaPixelId": "",
+	"googleFonts": "family=Jost:wght@300;500",
+	"header": {
+		"sticky": false,
+		"transparent": false
+	},
+	"social": {
+		"facebook": "",
+		"instagram": "",
+		"x": "",
+		"linkedin": "",
+		"youtube": ""
+	},
+	"business": {
+		"type": "LocalBusiness",
+		"telephone": "",
+		"email": "mitchell@weareknights.com",
+		"priceRange": "",
+		"address": {
+			"street": "",
+			"city": "Kennesaw",
+			"region": "GA",
+			"postalCode": "",
+			"country": "US"
+		},
+		"geo": {
+			"latitude": "",
+			"longitude": ""
+		},
+		"openingHours": [
+			{
+				"@type": "OpeningHoursSpecification",
+				"dayOfWeek": [
+					"Monday",
+					"Tuesday",
+					"Wednesday",
+					"Thursday",
+					"Friday"
+				],
+				"opens": "09:00",
+				"closes": "17:00"
+			}
+		]
+	}
 }

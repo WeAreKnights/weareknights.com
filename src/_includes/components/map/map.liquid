@@ -1,0 +1,13 @@
+{% if query != blank %}
+<div class="map">
+	<iframe
+		src="https://maps.google.com/maps?q={{ query | url_encode }}&t=m&z={{ zoom | default: 12 }}&ie=UTF8&iwloc=B&output=embed"
+		title="Map of {{ query | escape }}"
+		loading="lazy"
+		referrerpolicy="no-referrer-when-downgrade"
+	></iframe>
+	<p class="map-fallback">
+		<a href="https://www.google.com/maps/search/?api=1&query={{ query | url_encode }}" target="_blank" rel="noopener noreferrer">View larger map<span class="visually-hidden"> of {{ query | escape }} (opens in a new tab)</span></a>
+	</p>
+</div>
+{% endif %}

@@ -1,0 +1,42 @@
+.pill {
+	display: inline-flex;
+	align-items: center;
+	padding: var(--size-1) var(--size-3);
+	border: 1px solid currentColor;
+	border-radius: var(--radius-round);
+	background: transparent;
+	color: var(--color-text);
+	font-size: var(--step--1);
+	font-weight: var(--font-weight-6);
+	letter-spacing: 0.06em;
+	line-height: 1.4;
+	text-decoration: none;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+a.pill:hover {
+	border-color: var(--color-primary);
+	color: var(--color-primary);
+}
+
+.pill-solid {
+	border-color: var(--color-text);
+	background: var(--color-text);
+	color: var(--color-surface);
+}
+
+a.pill-solid:hover {
+	border-color: var(--color-primary);
+	background: var(--color-primary);
+	color: var(--color-on-primary);
+}
+
+.pill-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--size-2);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}

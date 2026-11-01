@@ -1,0 +1,29 @@
+{% assign headingTag = headingLevel | default: 2 | prepend: "h" %}
+<ul class="post-list">
+	{% for post in posts %}
+		<li class="post-list-item">
+			{% if post.data.image %}
+				<a href="{{ post.url }}" class="post-list-image">{% responsiveImage post.data.image, post.data.title %}</a>
+			{% endif %}
+			<{{ headingTag }} class="post-list-title"><a href="{{ post.url }}">{{ post.data.title }}</a></{{ headingTag }}>
+			{% if post.data.categories %}
+				<p class="post-list-categories">
+					{% for category in post.data.categories %}
+						<a href="/blog/category/{{ category | slugify }}/">{{ category }}</a>
+					{% endfor %}
+				</p>
+			{% endif %}
+			{% assign visibleTags = post.data.tags | filterTagList %}
+			{% if visibleTags.size > 0 %}
+				<p class="post-list-tags">
+					{% for tag in visibleTags %}
+						<a href="/blog/tag/{{ tag | slugify }}/">{{ tag }}</a>
+					{% endfor %}
+				</p>
+			{% endif %}
+			{% assign postAuthor = authors | where: "id", post.data.author | first %}
+			{% if postAuthor %}<p class="author-byline">By <a href="/authors/{{ postAuthor.id }}/">{{ postAuthor.name }}</a></p>{% endif %}
+			<time datetime="{{ post.date | isoDate }}" title="{{ post.date | readableDate }}">{{ post.date | relativeDate }}</time>
+		</li>
+	{% endfor %}
+</ul>

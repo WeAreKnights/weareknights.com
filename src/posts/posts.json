@@ -1,0 +1,8 @@
+{
+	"layout": "post.liquid",
+	"tags": "posts",
+	"ogType": "article",
+	"eleventyComputed": {
+		"permalink": "/posts/{{ page.fileSlug }}/"
+	}
+}

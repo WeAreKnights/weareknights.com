@@ -1,0 +1,5 @@
+/* Breakpoints can't be CSS variables (var() doesn't work in @media), so they're @custom-media, compiled to plain media queries by Lightning CSS at build time. A stylesheet that uses one must `@import` this file first. */
+@custom-media --sm-down (max-width: 640px);
+@custom-media --sm-up (min-width: 640px);
+@custom-media --md-down (max-width: 960px);
+@custom-media --md-up (min-width: 960px);
