@@ -1,10 +1,11 @@
 @import "../../../assets/styles/_breakpoints.css";
 
 .client-logos {
+	--client-logo-min-cell: 9rem;
 	--client-logo-max-width: 8rem;
 	--client-logo-max-height: 3.5rem;
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--client-logo-min-cell)), 1fr));
 	gap: var(--size-3);
 	margin: 0 0 var(--size-6);
 	padding: 0;
@@ -13,7 +14,8 @@
 
 @media (--sm-down) {
 	.client-logos {
-		grid-template-columns: repeat(2, 1fr);
+		--client-logo-min-cell: 7rem;
+		gap: var(--size-2);
 	}
 }
 
@@ -22,7 +24,7 @@
 	align-items: center;
 	justify-content: center;
 	aspect-ratio: 2 / 1;
-	padding: var(--size-5);
+	padding: var(--size-3);
 	border: var(--border-size-1) solid var(--color-border-subtle);
 	border-radius: var(--radius-2);
 }
@@ -31,6 +33,6 @@
 	width: auto;
 	max-width: min(100%, var(--client-logo-max-width));
 	height: auto;
-	max-height: var(--client-logo-max-height);
+	max-height: min(100%, var(--client-logo-max-height));
 	object-fit: contain;
 }

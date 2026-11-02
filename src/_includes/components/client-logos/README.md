@@ -13,6 +13,6 @@ A grid of client logos, each in a bordered cell of equal size so wide and square
 ## Notes
 
 - Logos should be SVG. `responsiveImage` copies SVGs through as vector files (hashed filenames, width/height set) instead of rasterizing them; PNG/JPG logos still get the responsive AVIF/WebP/JPEG treatment.
-- Cells are 3 columns, 2 at phone width, 2:1 boxes. Logos are capped at `--client-logo-max-width` (8rem) and `--client-logo-max-height` (3.5rem), set on `.client-logos`, so wide and square marks end up visually balanced and none dominates; `object-fit: contain` means they never crop or stretch. An SVG with a lot of empty space in its viewBox will look small; trim the viewBox.
+- Cells are 2:1 boxes in an auto-fill grid (`--client-logo-min-cell`: 9rem, 7rem on phones), so the column count follows the available width. Logos are capped at `--client-logo-max-width` (8rem) and `--client-logo-max-height` (3.5rem), set on `.client-logos`, so wide and square marks end up visually balanced and none dominates; `object-fit: contain` means they never crop or stretch. An SVG with a lot of empty space in its viewBox will look small; trim the viewBox.
 - Logos keep their own colors. Add a `filter: grayscale(1)` rule here if a uniform look is wanted.
 - Add a logo by dropping the file in `src/images/clients/` and adding `{ "name": "...", "logo": "clients/file.svg" }` to the list. Order is the order of the list.
