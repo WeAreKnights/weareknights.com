@@ -2,6 +2,10 @@
 	--font-body: "Jost", var(--font-sans);
 	--font-heading: var(--font-body);
 
+	/* Native accent theming: form controls and the page scrollbar use the primary color (a strong enough contrast for check marks and the thumb). */
+	accent-color: var(--color-primary);
+	scrollbar-color: var(--color-primary) var(--color-surface-subtle);
+
 	--letter-spacing-caps: 0.1rem; /* small all-caps UI text: nav, buttons, meta lines */
 
 	/* Fluid type scale. Each step interpolates between a 320px and a 1200px viewport: at 320px the body is 16px on a minor third (1.2) ratio, at 1200px it is 18px on a perfect fourth (1.333). The ratio widening with the viewport keeps the hierarchy intact on phones without oversized headings. Values are clamp(min, rem + vw, max), so they still respond to browser zoom and text-size settings. */
@@ -76,4 +80,27 @@ header a,
 header a:hover,
 .footer-inner a:hover {
 	text-decoration: underline;
+}
+
+/* Highlighted text uses the accent color behind the normal text color. */
+::selection {
+	background: var(--color-accent);
+	color: var(--color-text);
+}
+
+/* Plain lists in page content (no class, so component lists like the post list and logo grid are left alone) keep the container's side padding, then indent each item 2rem so the bullet or number sits about 1rem inside the text block and wrapped lines align with the first line. Nested lists get their indent from their items, not their own padding. */
+.content :is(ul, ol):not([class]) > li {
+	margin-inline-start: 2rem;
+}
+
+.content :is(ul, ol):not([class]) > li + li {
+	margin-block-start: var(--size-2);
+}
+
+.content li :is(ul, ol) {
+	padding-inline-start: 0;
+}
+
+.content li::marker {
+	color: var(--color-accent);
 }
