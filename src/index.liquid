@@ -11,7 +11,7 @@ fullWidth: true
 	<p>A two-person design studio run by <a href="/designers/mitchell/">Mitchell</a> &amp; <a href="/designers/tonya/">Tonya</a> Knight. We create <a href="/portfolio/?category=branding">brand identities</a>, <a href="/portfolio/?category=web">web products</a>, &amp; <a href="/portfolio/?category=print">print work</a> that last.</p>
 </section>
 
-<section class="container">
+<section class="wide">
 	<h2>Recent work</h2>
 	{% assign recentProjects = collections.portfolioProjects | reverse | slice: 0, 4 %}
 	{% include "components/portfolio/portfolio.liquid", items: recentProjects %}

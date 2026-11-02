@@ -7,9 +7,6 @@ layout: base.liquid
 {% pageBreadcrumbSchema site, pageTitle, page.url %}
 {% assign projectDesigner = authors | where: "id", designer | first %}
 <article class="container">
-	<p>
-		{{ category }}{% if projectDesigner %} &middot; <a href="/designers/{{ projectDesigner.id }}/">{{ projectDesigner.name }}</a>{% endif %}
-	</p>
 	{{ content }}
 	{% assign projectImages = images %}
 	{% if projectImages == nil and image %}{% assign projectImages = image | split: "," %}{% endif %}
@@ -29,10 +26,22 @@ layout: base.liquid
 			{% endfor %}
 		</div>
 	{% endif %}
-	{% if credits.size > 0 %}
+	{% if credits.size > 0 or projectDesigner or category %}
 		<section class="portfolio-credits">
 			<h2>Credits</h2>
 			<ul>
+				{% if projectDesigner %}
+					<li>
+						<span class="portfolio-credit-role">Designer</span>
+						<a href="/designers/{{ projectDesigner.id }}/">{{ projectDesigner.name }}</a>
+					</li>
+				{% endif %}
+				{% if category %}
+					<li>
+						<span class="portfolio-credit-role">Category</span>
+						<a href="/portfolio/?category={{ category | slugify }}">{{ category }}</a>
+					</li>
+				{% endif %}
 				{% for credit in credits %}
 					<li>
 						<span class="portfolio-credit-role">{{ credit.role }}</span>
@@ -42,5 +51,5 @@ layout: base.liquid
 			</ul>
 		</section>
 	{% endif %}
-	<p><a href="/portfolio/">&larr; Back to portfolio</a></p>
+	<p><a class="button button-outline" href="/portfolio/">Back to Portfolio</a></p>
 </article>

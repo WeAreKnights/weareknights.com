@@ -5,6 +5,6 @@ fullWidth: true
 ---
 
 {% comment %}A div, not a section: the reveal observer needs 15% of a section visible, which a tall grid of tiles never reaches.{% endcomment %}
-<div class="container">
+<div class="wide">
 	{% include "components/portfolio/portfolio.liquid", items: collections.portfolioProjects, isFilterable: true %}
 </div>

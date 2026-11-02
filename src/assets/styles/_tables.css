@@ -1,0 +1,51 @@
+@import "./_breakpoints.css";
+
+/* Markdown tables come out as bare <table>s with no wrapper, so the table itself becomes the horizontal scroller on phones: columns keep a readable minimum width instead of crushing into one-word lines, and the page never scrolls sideways. */
+table {
+	width: 100%;
+	border-collapse: separate; /* collapsed borders ignore border-radius */
+	border-spacing: 0;
+	margin-block: var(--size-5);
+	border: var(--border-size-1) solid var(--color-border-subtle);
+	border-radius: var(--radius-2);
+	font-size: var(--step--1);
+}
+
+th,
+td {
+	padding: var(--size-2) var(--size-3);
+	border-bottom: var(--border-size-1) solid var(--color-border-subtle);
+	text-align: start;
+	vertical-align: top;
+}
+
+tbody tr:last-child > * {
+	border-bottom: 0;
+}
+
+th {
+	font-weight: 500;
+}
+
+@media (--sm-down) {
+	table {
+		display: block;
+		overflow-x: auto;
+		/* Edge shadows appear only while there is more to scroll to. */
+		background:
+			linear-gradient(to right, var(--color-surface) 30%, transparent) left / 2rem 100% no-repeat local,
+			linear-gradient(to left, var(--color-surface) 30%, transparent) right / 2rem 100% no-repeat local,
+			radial-gradient(farthest-side at 0 50%, rgb(0 0 0 / 15%), transparent) left / 0.75rem 100% no-repeat scroll,
+			radial-gradient(farthest-side at 100% 50%, rgb(0 0 0 / 15%), transparent) right / 0.75rem 100% no-repeat scroll;
+	}
+
+	th,
+	td {
+		min-width: 8rem;
+	}
+
+	th:first-child,
+	td:first-child {
+		min-width: 7rem;
+	}
+}

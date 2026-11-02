@@ -6,8 +6,8 @@
 	{% endif %}
 	<div class="hero-inner">
 		<h1>{{ title | default: site.title }}</h1>
-		{% if showDate and date %}
-			<time datetime="{{ date | isoDate }}" title="{{ date | readableDate }}">{{ date | relativeDate }}</time>
+		{% if showMeta %}
+			{% include "components/post-meta/post-meta.liquid", authorId: author, tags: tags, date: date %}
 		{% endif %}
 	</div>
 </header>

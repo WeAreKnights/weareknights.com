@@ -1,3 +1,18 @@
 @view-transition {
 	navigation: auto;
 }
+
+/* One set of motion tokens for the whole site: components reference these instead of writing their own durations and easings. --duration-fast is for hover and state changes (fades, rotations), --duration-slow for scroll reveals. Reduced-motion visitors get instant state changes and no reveals. */
+:root {
+	--ease-standard: var(--ease-2);
+	--duration-fast: 0.2s;
+	--duration-slow: 0.6s;
+	--transition-fast: var(--duration-fast) var(--ease-standard);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	:root {
+		--duration-fast: 0s;
+		--duration-slow: 0s;
+	}
+}

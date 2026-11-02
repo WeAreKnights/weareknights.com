@@ -43,7 +43,7 @@
 	html.js .gallery-item {
 		opacity: 0;
 		transform: translateY(var(--size-4));
-		transition: opacity 0.5s var(--ease-2), transform 0.5s var(--ease-2);
+		transition: opacity var(--duration-slow) var(--ease-standard), transform var(--duration-slow) var(--ease-standard);
 		transition-delay: calc(var(--reveal-index, 0) * 80ms);
 	}
 

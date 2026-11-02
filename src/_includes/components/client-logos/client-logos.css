@@ -2,11 +2,13 @@
 
 .client-logos {
 	--client-logo-min-cell: 9rem;
-	--client-logo-max-width: 8rem;
-	--client-logo-max-height: 3.5rem;
+	--client-logo-max-columns: 5;
+	--client-logo-gap: var(--size-3);
+	--client-logo-scale: 0.67;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--client-logo-min-cell)), 1fr));
-	gap: var(--size-3);
+	/* As many equal 2:1 cells as fit at the minimum width, never more than the maximum column count. */
+	grid-template-columns: repeat(auto-fill, minmax(max(var(--client-logo-min-cell), calc((100% - (var(--client-logo-max-columns) - 1) * var(--client-logo-gap)) / var(--client-logo-max-columns))), 1fr));
+	gap: var(--client-logo-gap);
 	margin: 0 0 var(--size-6);
 	padding: 0;
 	list-style: none;
@@ -15,7 +17,7 @@
 @media (--sm-down) {
 	.client-logos {
 		--client-logo-min-cell: 7rem;
-		gap: var(--size-2);
+		--client-logo-gap: var(--size-2);
 	}
 }
 
@@ -24,15 +26,19 @@
 	align-items: center;
 	justify-content: center;
 	aspect-ratio: 2 / 1;
-	padding: var(--size-3);
+	padding: var(--size-4);
 	border: var(--border-size-1) solid var(--color-border-subtle);
 	border-radius: var(--radius-2);
 }
 
+/* Every logo is fitted into the same frame, a fraction of the cell's padded box, so wide and square marks share one aspect ratio. Change --client-logo-scale to resize them all. */
+.client-logos picture,
 .client-logos img {
-	width: auto;
-	max-width: min(100%, var(--client-logo-max-width));
-	height: auto;
-	max-height: min(100%, var(--client-logo-max-height));
+	display: block;
+	width: calc(100% * var(--client-logo-scale));
+	height: calc(100% * var(--client-logo-scale));
+}
+
+.client-logos img {
 	object-fit: contain;
 }

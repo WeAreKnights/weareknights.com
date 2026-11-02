@@ -10,8 +10,10 @@
 	background: var(--color-primary);
 	color: var(--color-on-primary);
 	font: inherit;
-	font-weight: var(--font-weight-5);
+	font-weight: var(--font-weight-3);
+	letter-spacing: var(--letter-spacing-caps);
 	text-decoration: none;
+	text-transform: uppercase;
 	white-space: nowrap;
 	cursor: pointer;
 }

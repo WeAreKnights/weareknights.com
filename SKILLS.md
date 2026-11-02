@@ -40,7 +40,7 @@ src/
   assets/
     lib/                     shared client-side modules (when-visible.js) — outside the components/*/*.js bundle glob, imported by components
     main.js                  Vite entry — base.css, then globs in every component's CSS/JS
-    styles/                  base.css (aggregator) + _theme/_reset/_type/_layout/_accessibility/_animation.css
+    styles/                  base.css (aggregator) + _theme/_reset/_type/_layout/_tables/_accessibility/_animation.css
     images/                  passthrough-copied as-is (logo, icon, opengraph image)
   images/                    raw source photos for eleventy-img — not passthrough-copied. Committed on this site, because the GitHub Pages build runs in CI and needs them
   pages/                     "Page" content type
@@ -90,6 +90,9 @@ Color has one indirection layer: Open Props palette values → **semantic `--col
 ## Type scale (`src/assets/styles/_type.css`)
 
 Fluid: every `--step-N` is `clamp(min, rem + vw, max)` interpolating between a 320px and a 1200px viewport. At 320px the body is 16px on a minor third (1.2) ratio; at 1200px it is 18px on a perfect fourth (1.333). The ratio grows with the viewport, so phones keep the same hierarchy with smaller headings. Sizes are `rem` tokens, never px (the root stays `html { font-size: 100% }`, so zoom and the visitor's browser text-size setting still work): `--step--1` · `--step-0` (body) · `--step-1` · `--step-2` · `--step-3` · `--step-4` · `--step-5`. Headings h1–h6 map to steps 4 → -1. Components use `font-size: var(--step-N)`, not Open Props' `--font-size-*`. To change the range or ratios, regenerate the clamp values (min/max rem from base × ratio^N; vw coefficient = (max−min)/(1200−320) × 16 × 100; intercept = min − slope × 320) rather than editing one step. Use `lh`/`em` only where a size should follow its context.
+
+## Motion (`src/assets/styles/_animation.css`)
+Components never hard-code durations or easings: use `--transition-fast` (`transition: opacity var(--transition-fast)`) for hover and state fades, `--duration-slow` with `--ease-standard` for scroll reveals. Reduced-motion visitors get both durations set to 0s. No animation library.
 
 ## Breakpoints
 

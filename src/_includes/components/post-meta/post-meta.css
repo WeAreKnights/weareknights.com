@@ -1,0 +1,26 @@
+.post-meta {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0;
+	color: var(--color-text-muted);
+	font-size: var(--step--1);
+	letter-spacing: var(--letter-spacing-caps);
+	text-transform: uppercase;
+}
+
+.post-meta > :not(:last-child)::after {
+	content: "\2022";
+	margin-inline: var(--size-2);
+}
+
+.post-meta a {
+	color: inherit;
+}
+
+.post-meta-tags a {
+	text-decoration: none;
+}
+
+.post-meta-tags a:hover {
+	text-decoration: underline;
+}

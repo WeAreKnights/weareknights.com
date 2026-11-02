@@ -1,0 +1,9 @@
+{% assign metaAuthor = authors | where: "id", authorId | first %}
+{% assign metaTags = tags | filterTagList %}
+<p class="post-meta">
+	{% if metaAuthor %}<span>By <a href="/designers/{{ metaAuthor.id }}/">{{ metaAuthor.name }}</a></span>{% endif %}
+	<time datetime="{{ date | isoDate }}" title="{{ date | readableDate }}">{{ date | relativeDate }}</time>
+	{% if metaTags.size > 0 %}
+		<span class="post-meta-tags">{% for tag in metaTags %}<a href="/blog/tag/{{ tag | slugify }}/">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}</span>
+	{% endif %}
+</p>

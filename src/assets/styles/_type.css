@@ -2,6 +2,8 @@
 	--font-body: "Jost", var(--font-sans);
 	--font-heading: var(--font-body);
 
+	--letter-spacing-caps: 0.1rem; /* small all-caps UI text: nav, buttons, meta lines */
+
 	/* Fluid type scale. Each step interpolates between a 320px and a 1200px viewport: at 320px the body is 16px on a minor third (1.2) ratio, at 1200px it is 18px on a perfect fourth (1.333). The ratio widening with the viewport keeps the hierarchy intact on phones without oversized headings. Values are clamp(min, rem + vw, max), so they still respond to browser zoom and text-size settings. */
 	--step--1: clamp(0.8333rem, calc(0.8295rem + 0.0193vw), 0.8440rem);
 	--step-0: clamp(1.0000rem, calc(0.9545rem + 0.2273vw), 1.1250rem);
