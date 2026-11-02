@@ -18,4 +18,8 @@
 	--color-danger: var(--red-7);
 	--color-success: var(--green-7);
 	--color-rating: var(--yellow-6);
+
+	/* The thin rounded box used by cards, tables, logo cells, the portfolio grid and images, and the hero. Use these instead of writing border and radius by hand. */
+	--border-subtle: var(--border-size-1) solid var(--color-border-subtle);
+	--radius-container: var(--radius-3);
 }

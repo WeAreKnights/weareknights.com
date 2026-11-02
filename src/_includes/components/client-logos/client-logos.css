@@ -27,8 +27,8 @@
 	justify-content: center;
 	aspect-ratio: 2 / 1;
 	padding: var(--size-4);
-	border: var(--border-size-1) solid var(--color-border-subtle);
-	border-radius: var(--radius-2);
+	border: var(--border-subtle);
+	border-radius: var(--radius-container);
 }
 
 /* Every logo is fitted into the same frame, a fraction of the cell's padded box, so wide and square marks share one aspect ratio. Change --client-logo-scale to resize them all. */

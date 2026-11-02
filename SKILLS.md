@@ -87,6 +87,8 @@ Color has one indirection layer: Open Props palette values → **semantic `--col
 - Adding a token: only when two or more places need the same role. Add it to `_theme.css` and to this table.
 - Per-client theming: edit the values in `_theme.css` (or point a token at a different Open Props value). Don't override tokens inside component CSS.
 
+Containers (cards, tables, logo cells, the portfolio grid and images, the hero) share `--border-subtle` (1px solid subtle border) and `--radius-container` (16px). Use them rather than writing border and radius by hand.
+
 ## Type scale (`src/assets/styles/_type.css`)
 
 Fluid: every `--step-N` is `clamp(min, rem + vw, max)` interpolating between a 320px and a 1200px viewport. At 320px the body is 16px on a minor third (1.2) ratio; at 1200px it is 18px on a perfect fourth (1.333). The ratio grows with the viewport, so phones keep the same hierarchy with smaller headings. Sizes are `rem` tokens, never px (the root stays `html { font-size: 100% }`, so zoom and the visitor's browser text-size setting still work): `--step--1` · `--step-0` (body) · `--step-1` · `--step-2` · `--step-3` · `--step-4` · `--step-5`. Headings h1–h6 map to steps 4 → -1. Components use `font-size: var(--step-N)`, not Open Props' `--font-size-*`. To change the range or ratios, regenerate the clamp values (min/max rem from base × ratio^N; vw coefficient = (max−min)/(1200−320) × 16 × 100; intercept = min − slope × 320) rather than editing one step. Use `lh`/`em` only where a size should follow its context.

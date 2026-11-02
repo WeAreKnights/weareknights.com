@@ -13,8 +13,8 @@
 	align-items: flex-start;
 	gap: var(--size-3);
 	padding: var(--size-5);
-	border: var(--border-size-1) solid var(--color-border-subtle);
-	border-radius: var(--radius-2);
+	border: var(--border-subtle);
+	border-radius: var(--radius-container);
 }
 
 .post-list-image {
