@@ -24,7 +24,7 @@ eleventyComputed:
 </section>
 
 {% if author.clients.size > 0 %}
-	<section class="container">
+	<section class="content">
 		<h2>Brands</h2>
 		{% include "components/client-logos/client-logos.liquid", clients: author.clients %}
 	</section>
@@ -32,7 +32,7 @@ eleventyComputed:
 
 {% assign authorProjects = collections.portfolioProjects | where: "data.designer", author.id %}
 {% if authorProjects.size > 0 %}
-	<section class="wide">
+	<section class="content">
 		<h2>Portfolio</h2>
 		{% assign recentProjects = authorProjects | reverse | slice: 0, 4 %}
 		{% include "components/portfolio/portfolio.liquid", items: recentProjects, isFilterable: true %}

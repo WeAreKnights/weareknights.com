@@ -14,5 +14,74 @@
 /* The footer's search popup (opened by the header's search button). */
 .popup[data-id="search"] {
 	max-width: 40rem;
-	padding-block-start: var(--size-8);
+	padding: var(--size-3);
+	overflow: visible; /* lets the close button sit outside the panel; the results list scrolls on its own */
+	background: rgb(from var(--color-surface) r g b / 70%);
+	backdrop-filter: blur(var(--blur-glass));
+}
+
+/* The reserved height prevents layout shift for an inline search, but in the popup it only adds blank space under the input. */
+.popup[data-id="search"] .search {
+	min-height: 0;
+}
+
+/* With only a small even padding there's no room for the close button inside the panel, so it sits just above the top-right corner on the backdrop. */
+.popup[data-id="search"] .popup-close {
+	inset: auto 0 calc(100% + var(--size-1)) auto;
+	color: var(--color-on-dark);
+}
+
+.popup[data-id="search"] .pagefind-ui__drawer {
+	max-height: 60vh;
+	overflow-y: auto;
+}
+
+/* Focus ring: a glow that is the full accent color at the input's edge and fades to transparent outward, with no outline offset and so no white gap. It sits on the input itself, not the form, so it doesn't wrap the results below. */
+.search .pagefind-ui .pagefind-ui__search-input {
+	background: var(--color-surface);
+	transition: box-shadow var(--transition-fast);
+}
+
+.search .pagefind-ui .pagefind-ui__search-input:focus,
+.search .pagefind-ui .pagefind-ui__search-input:focus-visible {
+	outline: none;
+	box-shadow: 0 0 1.25rem 0.375rem var(--color-accent);
+}
+
+/* The Clear button reads as part of the input: no box, nav-style small caps. */
+.search .pagefind-ui .pagefind-ui__search-clear {
+	padding-inline: var(--size-4);
+	border: 0;
+	background: transparent;
+	color: var(--color-primary);
+	font: inherit;
+	font-size: var(--step--1);
+	letter-spacing: var(--letter-spacing-caps);
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+.search .pagefind-ui .pagefind-ui__search-clear:hover {
+	text-decoration: underline;
+}
+
+/* Results sit on a white panel, with the tall default spacing trimmed so the popup's padding stays even. */
+.search .pagefind-ui .pagefind-ui__drawer {
+	margin-block-start: var(--size-3);
+	padding-inline: var(--size-5);
+	border-radius: var(--radius-2);
+	background: var(--color-surface);
+}
+
+.search .pagefind-ui .pagefind-ui__message {
+	padding-block: var(--size-3);
+	margin-block-end: 0;
+}
+
+.search .pagefind-ui .pagefind-ui__results {
+	margin-block: 0;
+}
+
+.search .pagefind-ui .pagefind-ui__result {
+	padding-block: var(--size-4);
 }

@@ -1,7 +1,6 @@
 @import "../../../assets/styles/_breakpoints.css";
 
 .portfolio-filters {
-	padding-inline: var(--size-6);
 	display: flex;
 	flex-wrap: wrap;
 	gap: var(--size-3);
@@ -111,7 +110,7 @@
 		gap: var(--size-1);
 		background: rgb(from var(--color-accent) r g b / 80%);
 		color: var(--color-on-accent);
-		backdrop-filter: blur(1rem);
+		backdrop-filter: blur(var(--blur-glass));
 		opacity: 0;
 		transition: opacity var(--transition-fast);
 	}

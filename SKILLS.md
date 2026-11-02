@@ -96,6 +96,9 @@ Fluid: every `--step-N` is `clamp(min, rem + vw, max)` interpolating between a 3
 ## Motion (`src/assets/styles/_animation.css`)
 Components never hard-code durations or easings: use `--transition-fast` (`transition: opacity var(--transition-fast)`) for hover and state fades, `--duration-slow` with `--ease-standard` for scroll reveals. Reduced-motion visitors get both durations set to 0s. No animation library.
 
+## Layout widths (`src/assets/styles/_layout.css`)
+Inside `<main>` there are two widths. Wrap page content in `.content`: its direct children are limited to `--content-width` (51rem) and centered with the standard inset. Tables, `.portfolio` (the grid) and `.portfolio-images` run the full width of `<main>`, like the hero. To make a new element full width, add it to the `:is(...)` list in `_layout.css`. Don't reintroduce per-page wrappers like `.container`.
+
 ## Breakpoints
 
 CSS variables don't work inside `@media`, so breakpoints are `@custom-media` in `src/assets/styles/_breakpoints.css`, which Lightning CSS compiles to plain media queries (`vite.config.js` enables it). A component stylesheet that uses one starts with `@import "../../../assets/styles/_breakpoints.css";`.

@@ -6,7 +6,7 @@ layout: base.liquid
 {% assign pageTitle = title | default: site.title %}
 {% pageBreadcrumbSchema site, pageTitle, page.url %}
 {% assign projectDesigner = authors | where: "id", designer | first %}
-<article class="container">
+<article class="content">
 	{{ content }}
 	{% assign projectImages = images %}
 	{% if projectImages == nil and image %}{% assign projectImages = image | split: "," %}{% endif %}

@@ -1,6 +1,7 @@
 /* Main is a full-width white container with rounded corners floating on --color-page, a gutter apart from the viewport edge; the footer sits below it on the page background. */
 :root {
 	--page-gutter: 1rem;
+	--content-width: 51rem; /* about 80 characters of body text; rem so headings and text share one width */
 }
 
 main {
@@ -13,21 +14,22 @@ main {
 	display: flow-root; /* keeps the last child's bottom margin inside the container */
 }
 
+/* Two widths inside <main>. Everything is constrained to --content-width and centered with the standard inset, except full-width items (tables, the portfolio grid and project images), which run the whole width of <main> like the hero. A wrapper is just `.content`; put whatever goes inside it as direct children. */
 .content {
-	max-width: 80ch;
-	margin-inline: auto;
-	padding: var(--size-6);
+	padding-block: var(--size-6);
 }
 
-/* Spans the full width of <main>, the same as the hero, so a grid inside lines up with the accent-colored header. Text and controls in it keep the usual inset; only the grid itself runs edge to edge. */
-.wide > :not(.portfolio) {
+.content > *,
+.portfolio-filters {
+	max-width: var(--content-width);
+	margin-inline: auto;
 	padding-inline: var(--size-6);
 }
 
-.container {
-	max-width: 75rem;
-	margin-inline: auto;
-	padding-inline: var(--size-6);
+.content > :is(table, .portfolio, .portfolio-images) {
+	max-width: none;
+	margin-inline: 0;
+	padding-inline: 0;
 }
 
 footer {
