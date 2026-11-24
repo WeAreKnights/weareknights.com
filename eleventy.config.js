@@ -32,7 +32,10 @@ export default async function (eleventyConfig) {
 	});
 
 	eleventyConfig.addCollection("portfolioProjects", (collectionApi) => {
-		return collectionApi.getFilteredByTag("portfolio").sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+		return collectionApi
+			.getFilteredByTag("portfolio")
+			.filter((project) => !project.data.noindex)
+			.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
 	});
 
 	addFilters(eleventyConfig);
