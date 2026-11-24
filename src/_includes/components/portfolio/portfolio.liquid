@@ -29,6 +29,7 @@
 	<div class="portfolio-grid">
 		{% for item in items %}
 			{% assign cover = item.data.images | first | default: item.data.image %}
+			{% if cover.gallery %}{% assign cover = cover.gallery | first %}{% endif %}
 			{% assign coverPath = cover.src | default: cover %}
 			{% assign patternPosition = forloop.index0 | modulo: 4 %}
 			<div class="portfolio-tile" data-wide="{% if patternPosition == 1 or patternPosition == 2 %}true{% else %}false{% endif %}" data-designer="{{ item.data.designer }}" data-category="{{ item.data.category | slugify }}">

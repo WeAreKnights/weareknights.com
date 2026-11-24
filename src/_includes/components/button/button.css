@@ -10,6 +10,7 @@
 	background: var(--color-primary);
 	color: var(--color-on-primary);
 	font: inherit;
+	font-size: var(--step--1);
 	font-weight: var(--font-weight-3);
 	letter-spacing: var(--letter-spacing-caps);
 	text-decoration: none;

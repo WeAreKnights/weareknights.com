@@ -13,16 +13,20 @@ layout: base.liquid
 	{% if projectImages.size > 0 %}
 		<div class="portfolio-images">
 			{% for projectImage in projectImages %}
-				{% assign imagePath = projectImage.src | default: projectImage %}
-				{% if projectImage.caption %}
-					{% assign imageAlt = title | append: ": " | append: projectImage.caption %}
+				{% if projectImage.gallery %}
+					{% gallery projectImage.gallery, projectImage.columns, projectImage.masonry, projectImage.frame, title %}
 				{% else %}
-					{% assign imageAlt = title | append: " (" | append: forloop.index | append: " of " | append: forloop.length | append: ")" %}
+					{% assign imagePath = projectImage.src | default: projectImage %}
+					{% if projectImage.caption %}
+						{% assign imageAlt = title | append: ": " | append: projectImage.caption %}
+					{% else %}
+						{% assign imageAlt = title | append: " (" | append: forloop.index | append: " of " | append: forloop.length | append: ")" %}
+					{% endif %}
+					<figure>
+						{% responsiveImage imagePath, imageAlt, "(min-width: 1200px) 1200px, 100vw" %}
+						{% if projectImage.caption %}<figcaption>{{ projectImage.caption }}</figcaption>{% endif %}
+					</figure>
 				{% endif %}
-				<figure>
-					{% responsiveImage imagePath, imageAlt, "(min-width: 1200px) 1200px, 100vw" %}
-					{% if projectImage.caption %}<figcaption>{{ projectImage.caption }}</figcaption>{% endif %}
-				</figure>
 			{% endfor %}
 		</div>
 	{% endif %}

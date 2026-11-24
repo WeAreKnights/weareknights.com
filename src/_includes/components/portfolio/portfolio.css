@@ -180,20 +180,25 @@
 	margin-block: var(--size-6);
 }
 
-.portfolio-images figure {
+.portfolio-images > figure:not(.gallery-frame) {
 	margin: 0;
 }
 
-.portfolio-images figcaption {
+.portfolio-images > figure > figcaption {
 	margin-block-start: var(--size-2);
 	color: var(--color-text-muted);
 	font-size: var(--step--1);
 }
 
-.portfolio-images img {
+.portfolio-images > figure:not(.gallery-frame) img {
 	display: block;
 	width: 100%;
 	height: auto;
+	border: var(--border-subtle);
+	border-radius: var(--radius-container);
+}
+
+.portfolio-images .gallery:not(.gallery-framed) .gallery-item img {
 	border: var(--border-subtle);
 	border-radius: var(--radius-container);
 }

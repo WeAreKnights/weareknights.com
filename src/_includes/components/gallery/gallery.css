@@ -56,6 +56,103 @@
 	}
 }
 
+/* A social-post frame turns the grid into a one-image-at-a-time carousel. */
+.gallery-frame {
+	--gallery-frame-width: 30rem;
+	width: 100%;
+	max-width: var(--gallery-frame-width);
+	margin: var(--size-6) auto;
+	overflow: hidden;
+	border: var(--border-subtle);
+	border-radius: var(--radius-container);
+	background: var(--color-surface);
+}
+
+.gallery-frame-header {
+	display: flex;
+	align-items: center;
+	gap: var(--size-3);
+	padding: var(--size-3) var(--size-4);
+}
+
+.gallery-frame-avatar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	background: var(--color-accent);
+	color: var(--color-text);
+	font-size: var(--step--1);
+	font-weight: var(--font-weight-5);
+}
+
+.gallery-frame-handle {
+	font-size: var(--step--1);
+	font-weight: var(--font-weight-5);
+}
+
+.gallery-framed {
+	display: flex;
+	gap: 0;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scrollbar-width: none;
+}
+
+.gallery-framed::-webkit-scrollbar {
+	display: none;
+}
+
+.gallery-framed .gallery-item {
+	flex: 0 0 100%;
+	scroll-snap-align: start;
+}
+
+.gallery-framed .gallery-item img {
+	aspect-ratio: 1;
+	border-radius: 0;
+}
+
+.gallery-frame-footer {
+	display: grid;
+	gap: var(--size-2);
+	padding: var(--size-3) var(--size-4) var(--size-4);
+}
+
+.gallery-frame-actions {
+	display: flex;
+	align-items: center;
+	gap: var(--size-3);
+}
+
+.gallery-frame-save {
+	margin-inline-start: auto;
+}
+
+.gallery-frame-dots {
+	display: flex;
+	justify-content: center;
+	gap: var(--size-1);
+}
+
+.gallery-frame-dot {
+	width: 0.375rem;
+	height: 0.375rem;
+	border-radius: 50%;
+	background: var(--color-border-subtle);
+}
+
+.gallery-frame-dot.is-active {
+	background: var(--color-accent);
+}
+
+.gallery-frame-caption {
+	margin: 0;
+	font-size: var(--step--1);
+}
+
 @media (prefers-reduced-motion: no-preference) {
 	html.js .gallery-item {
 		opacity: 0;
@@ -92,10 +189,30 @@
 	background: rgb(0 0 0 / 85%);
 }
 
+.lightbox-figure {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--size-3);
+	margin: 0;
+}
+
 .lightbox-image {
 	max-width: min(90vw, 1200px);
-	max-height: 90vh;
+	max-height: 85vh;
 	border-radius: var(--radius-2);
+}
+
+.lightbox-caption {
+	max-width: min(90vw, 40rem);
+	margin: 0;
+	color: var(--color-on-dark);
+	font-size: var(--step--1);
+	text-align: center;
+}
+
+.lightbox-caption:empty {
+	display: none;
 }
 
 .lightbox-close,

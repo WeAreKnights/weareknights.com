@@ -20,6 +20,9 @@ eleventyComputed:
 	{% else %}
 		<p class="lead">{{ intro }}</p>
 	{% endif %}
+	{% if author.resume %}
+		<p><a class="button button-outline" href="{{ author.resume }}" target="_blank" rel="noopener">View R&eacute;sum&eacute; <span class="visually-hidden">(PDF, opens in a new tab)</span></a></p>
+	{% endif %}
 	{% include "components/author/author-links.liquid" %}
 </section>
 

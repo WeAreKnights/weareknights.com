@@ -12,6 +12,7 @@ document.querySelectorAll(".gallery").forEach((gallery) => {
 
 	const items = [...gallery.querySelectorAll(".gallery-item")];
 	const image = dialog.querySelector(".lightbox-image");
+	const caption = dialog.querySelector(".lightbox-caption");
 	let currentIndex = 0;
 	let trigger = null;
 
@@ -20,6 +21,7 @@ document.querySelectorAll(".gallery").forEach((gallery) => {
 		const item = items[currentIndex];
 		image.src = item.dataset.src;
 		image.alt = item.dataset.alt;
+		caption.textContent = item.dataset.caption ?? "";
 	};
 
 	items.forEach((item, index) => {
@@ -44,4 +46,17 @@ document.querySelectorAll(".gallery").forEach((gallery) => {
 	});
 
 	dialog.addEventListener("cancel", () => trigger?.focus());
+});
+
+document.querySelectorAll(".gallery-framed").forEach((gallery) => {
+	const dots = [...gallery.closest(".gallery-frame").querySelectorAll(".gallery-frame-dot")];
+	if (dots.length === 0) return;
+
+	const update = () => {
+		const index = gallery.clientWidth ? Math.round(gallery.scrollLeft / gallery.clientWidth) : 0;
+		dots.forEach((dot, position) => dot.classList.toggle("is-active", position === index));
+	};
+
+	update();
+	gallery.addEventListener("scroll", update, { passive: true });
 });

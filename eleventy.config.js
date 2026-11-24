@@ -12,6 +12,7 @@ const { postsPerPage = 10 } = JSON.parse(readFileSync(new URL("./src/_data/site.
 
 export default async function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy({ "src/assets/images": "assets/images" });
+	eleventyConfig.addPassthroughCopy({ "src/assets/documents": "assets/documents" });
 	eleventyConfig.addPassthroughCopy("src/CNAME");
 	eleventyConfig.addWatchTarget("_site/assets/.vite/manifest.json");
 

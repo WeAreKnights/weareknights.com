@@ -1,6 +1,6 @@
 # Author
 
-Authors live in `src/_data/authors.json` (`id`, `name`, `bio`, `avatar`, optional `about`, `social`, `clients`). `bio` is the one-line summary used on the About tile and as the page's meta description; the optional `about` is a longer paragraph shown as the intro on the author's own page (it falls back to `bio`). `avatar` is relative to `src/images/` and goes through `responsiveImage`.
+Authors live in `src/_data/authors.json` (`id`, `name`, `bio`, `avatar`, optional `about`, `resume`, `social`, `clients`). `bio` is the one-line summary used on the About tile and as the page's meta description; the optional `about` is a longer paragraph shown as the intro on the author's own page (it falls back to `bio`). `avatar` is relative to `src/images/` and goes through `responsiveImage`. `resume` is a URL (PDFs live in `src/assets/documents/`, copied to `/assets/documents/`); when set, the author's page shows a ghost "View Résumé" button that opens the PDF in a new tab under the intro, above the social links.
 
 - `author.liquid`: the avatar tile used in the grid on the About page. Needs `author` (a record from `authors`).
 - `author-links.liquid`: social links for one author. Icons exist for `github`, `dribbble` and `linkedin`; add another `{% elsif %}` branch for a new platform. Links open in a new tab with the visually-hidden notice.
