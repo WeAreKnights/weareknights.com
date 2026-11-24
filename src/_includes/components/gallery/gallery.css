@@ -39,6 +39,23 @@
 	}
 }
 
+@supports not (display: grid-lanes) {
+	.gallery-masonry-fallback {
+		grid-auto-flow: row dense;
+		grid-auto-rows: 1px;
+		row-gap: 0;
+	}
+
+	.gallery-masonry-fallback .gallery-item {
+		align-self: start;
+	}
+
+	.gallery-masonry-fallback .gallery-item img {
+		aspect-ratio: auto;
+		height: auto;
+	}
+}
+
 @media (prefers-reduced-motion: no-preference) {
 	html.js .gallery-item {
 		opacity: 0;

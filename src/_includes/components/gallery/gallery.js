@@ -1,6 +1,12 @@
-// Opens gallery thumbnails in a `<dialog>` lightbox with previous/next, backdrop-click and Escape to close, and returns focus to the thumbnail.
+// Opens gallery thumbnails in a `<dialog>` lightbox with previous/next, backdrop-click and Escape to close, and returns focus to the thumbnail. Masonry galleries load fallback/masonry.js only when the browser lacks `display: grid-lanes`.
+
+const needsMasonryFallback = !CSS.supports("display", "grid-lanes");
 
 document.querySelectorAll(".gallery").forEach((gallery) => {
+	if (needsMasonryFallback && gallery.classList.contains("gallery-masonry")) {
+		import("./fallback/masonry.js").then((module) => module.default(gallery));
+	}
+
 	const dialog = gallery.nextElementSibling;
 	if (!dialog || !dialog.classList.contains("lightbox")) return;
 

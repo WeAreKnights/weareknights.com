@@ -24,5 +24,5 @@
 	--radius-container: var(--radius-3);
 
 	/* Frosted-glass surfaces (hover overlays, the search popup) share one blur. */
-	--blur-glass: 3rem;
+	--blur-glass: 2.5rem;
 }
