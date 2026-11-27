@@ -5,20 +5,20 @@ category: Packaging
 order: 9999
 noindex: true
 images:
-  - portfolio/tonya/the-coca-cola-company-banner-01.jpg
+  - portfolio/tonya/tccc-banner-01.jpg
   - gallery:
-      - src: portfolio/tonya/the-coca-cola-company-packaging-01.jpg
+      - src: portfolio/tonya/tccc-concept-packaging-01.jpg
         caption: First packaging shot
-      - portfolio/tonya/the-coca-cola-company-packaging-03.jpg
-      - portfolio/tonya/the-coca-cola-company-packaging-04.jpg
-      - portfolio/tonya/the-coca-cola-company-packaging-05.jpg
-      - portfolio/tonya/the-coca-cola-company-powerpoint.jpg
+      - portfolio/tonya/tccc-concept-packaging-02.jpg
+      - portfolio/tonya/tccc-concept-packaging-03.jpg
+      - portfolio/tonya/tccc-concept-packaging-04.jpg
+      - portfolio/tonya/tccc-global-teen-powerpoint-color.jpg
     columns: 3
-  - portfolio/tonya/the-coca-cola-company-powerpoint.jpg
+  - portfolio/tonya/tccc-global-teen-powerpoint-color.jpg
   - gallery:
-      - portfolio/tonya/the-coca-cola-company-packaging-01.jpg
-      - portfolio/tonya/the-coca-cola-company-packaging-03.jpg
-      - portfolio/tonya/the-coca-cola-company-packaging-04.jpg
+      - portfolio/tonya/tccc-concept-packaging-01.jpg
+      - portfolio/tonya/tccc-concept-packaging-02.jpg
+      - portfolio/tonya/tccc-concept-packaging-03.jpg
     frame:
       type: instagram
       handle: weareknights

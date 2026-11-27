@@ -198,7 +198,7 @@
 	border-radius: var(--radius-container);
 }
 
-.portfolio-images .gallery:not(.gallery-framed) .gallery-item img {
+.portfolio-images .gallery:not(.gallery-framed, .gallery-profile) .gallery-item img {
 	border: var(--border-subtle);
 	border-radius: var(--radius-container);
 }

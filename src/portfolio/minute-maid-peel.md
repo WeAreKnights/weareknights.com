@@ -4,8 +4,8 @@ designer: tonya
 category: Branding
 order: 200
 images:
-  - portfolio/tonya/minute-maid-peel-carton.jpg
-  - portfolio/tonya/minute-maid-peel-pack-brand.jpg
+  - portfolio/tonya/tccc-minute-maid-peel-carton-color.jpg
+  - portfolio/tonya/tccc-minute-maid-peel-pack-logo.jpg
 credits:
   - role: Agency
     name: unitOne

@@ -38,7 +38,7 @@ const optimize = async (image, sizes) => {
 };
 
 const frameIcons = {
-	like: '<path d="M12 21s-7-4.4-9.3-9C1.2 8.8 3 5.5 6.2 5.5c1.9 0 3.2 1 3.8 2.1h4c.6-1.1 1.9-2.1 3.8-2.1C21 5.5 22.800 8.8 21.300 12c-2.300 4.600-9.300 9-9.300 9z"/>',
+	like: '<path d="M12 21s-7-4.4-9.3-9C1.2 8.8 3 5.5 6.2 5.5c1.9 0 3.2 1 3.8 2.1h4c.6-1.1 1.9-2.1 3.8-2.1C21 5.5 22.8 8.8 21.3 12c-2.3 4.6-9.3 9-9.3 9z"/>',
 	comment: '<path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.6-5A8.5 8.5 0 1 1 21 11.5z"/>',
 	share: '<path d="M21 3 10 14M21 3l-7 18-4-7-7-4 18-7z"/>',
 	save: '<path d="M6 3h12v18l-6-4.5L6 21V3z"/>',
@@ -53,7 +53,8 @@ const renderFrame = (frame, count) => {
 	const caption = frame.caption ? `<p class="gallery-frame-caption"><strong>${handle}</strong> ${escapeHtml(frame.caption)}</p>` : "";
 	const dots = count > 1 ? `<span class="gallery-frame-dots" aria-hidden="true"><span class="gallery-frame-dot is-active"></span>${'<span class="gallery-frame-dot"></span>'.repeat(count - 1)}</span>` : "";
 
-	const header = `<header class="gallery-frame-header"><span class="gallery-frame-avatar" aria-hidden="true">${initial}</span><span class="gallery-frame-handle">${handle}</span></header>`;
+	const title = frame.title ? `<span class="gallery-frame-title">${escapeHtml(frame.title)}</span>` : "";
+	const header = `<header class="gallery-frame-header"><span class="gallery-frame-avatar" aria-hidden="true">${initial}</span><span class="gallery-frame-name"><span class="gallery-frame-handle">${handle}</span>${title}</span></header>`;
 	const footer = `<footer class="gallery-frame-footer"><span class="gallery-frame-actions" aria-hidden="true">${renderIcon("like")}${renderIcon("comment")}${renderIcon("share")}<span class="gallery-frame-save">${renderIcon("save")}</span></span>${dots}${caption}</footer>`;
 
 	return { header, footer };
@@ -61,17 +62,18 @@ const renderFrame = (frame, count) => {
 
 export default function (eleventyConfig) {
 	/**
-	 * Image grid whose thumbnails open in a lightbox. Optionally wrapped in a social-post frame that turns the grid into a swipeable carousel.
+	 * Image grid whose thumbnails open in a lightbox. Optionally wrapped in a social frame: a single post (swipeable carousel) or a profile grid.
 	 * @param {Array<string | { src: string, alt?: string, caption?: string, width?: number, height?: number }>} images A path relative to src/images is optimized into responsive thumbnails and a large lightbox version. A path starting with "/" or a URL is used as-is, and its dimensions are read from the file when omitted.
 	 * @param {number} [columns]
 	 * @param {boolean} [masonry] Stack images in columns instead of a uniform grid.
-	 * @param {{ type: "instagram", handle: string, caption?: string }} [frame] Wraps the gallery in a post-style frame.
+	 * @param {{ type: "instagram" | "instagram-grid", handle: string, title?: string, caption?: string }} [frame] Wraps the gallery in a social frame.
 	 * @param {string} [label] Used to write alt text for images given without any.
 	 * @returns {Promise<string>} HTML
 	 */
 	eleventyConfig.addAsyncShortcode("gallery", async (images, columns, masonry, frame, label = "Gallery image") => {
 		const columnCount = columns ?? 3;
 		const useMasonry = Boolean(masonry) && !frame;
+		const isProfileGrid = frame?.type === "instagram-grid";
 
 		const normalized = images.map((image, index) => {
 			const entry = typeof image === "string" ? { src: image } : { ...image };
@@ -79,7 +81,7 @@ export default function (eleventyConfig) {
 			return entry;
 		});
 
-		const sizes = frame ? "(min-width: 30rem) 30rem, 100vw" : `(max-width: 640px) 100vw, ${Math.round(100 / columnCount)}vw`;
+		const sizes = isProfileGrid ? `(min-width: 30rem) ${Math.round(30 / columnCount)}rem, ${Math.round(100 / columnCount)}vw` : frame ? "(min-width: 30rem) 30rem, 100vw" : `(max-width: 640px) 100vw, ${Math.round(100 / columnCount)}vw`;
 
 		const resolved = await Promise.all(
 			normalized.map((image) => {
@@ -101,7 +103,7 @@ export default function (eleventyConfig) {
 			})
 			.join("");
 
-		const modifier = useMasonry ? " gallery-masonry" : frame ? " gallery-framed" : "";
+		const modifier = useMasonry ? " gallery-masonry" : isProfileGrid ? " gallery-profile" : frame ? " gallery-framed" : "";
 
 		const gallery = `<div class="gallery${modifier}" style="--gallery-columns: ${columnCount}">${thumbnails}</div>
 <dialog class="lightbox">
@@ -116,12 +118,14 @@ export default function (eleventyConfig) {
 
 		if (!frame) return gallery;
 
-		if (frame.type !== "instagram") {
+		if (frame.type !== "instagram" && !isProfileGrid) {
 			console.warn(`Unknown gallery frame type: ${frame.type}`);
 			return gallery;
 		}
 
 		const { header, footer } = renderFrame(frame, resolved.length);
+
+		if (isProfileGrid) return `<figure class="gallery-frame gallery-frame-instagram-grid">${header}${gallery}</figure>`;
 
 		return `<figure class="gallery-frame gallery-frame-instagram">${header}${gallery}${footer}</figure>`;
 	});

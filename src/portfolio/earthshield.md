@@ -4,8 +4,10 @@ designer: tonya
 category: Print
 order: 100
 images:
-  - portfolio/tonya/earthshield-ad-02.jpg
-  - portfolio/tonya/earthshield-print.jpg
+  - portfolio/tonya/earthshield-branding-featured.jpg
+  - portfolio/tonya/earthshield-ad-nature.jpg
+  - portfolio/tonya/earthshield-ad-office.jpg
+  - portfolio/tonya/earthshield-branding.jpg
 credits:
   - role: Agency
     name: unitOne

@@ -4,7 +4,7 @@ designer: tonya
 category: Presentations
 order: 190
 images:
-  - portfolio/tonya/meadwestvaco-powerpoint.jpg
+  - portfolio/tonya/mwv-powerpoint.jpg
 credits:
   - role: Agency
     name: unitOne

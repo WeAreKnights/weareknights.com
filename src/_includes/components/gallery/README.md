@@ -12,6 +12,7 @@
 - **Image sources:** a path relative to `src/images/` (like `portfolio/tonya/agco-print.jpg`) is run through `@11ty/eleventy-img` into responsive AVIF/WebP/JPEG thumbnails (400/800/1600) and the lightbox opens the 1600px WebP, so the original is never shipped. A path starting with `/` or a URL is used as-is, as before.
 - **Alt text and captions:** `alt` is optional; when it is missing the shortcode writes `<label> (n of N)` (`label` defaults to `Gallery image`; the portfolio layout passes the project title). A `caption` is shown under the image in the lightbox.
 - **Social frame (optional, fourth argument):** `{ type: "instagram", handle, caption? }` wraps the gallery in a post-style frame: avatar initial and handle on top, then a swipeable one-image-at-a-time carousel (CSS scroll-snap, images cropped square), then icons, position dots and the caption. The frame is drawn with generic icons and no logo, and the width is `--gallery-frame-width` (30rem). A framed gallery ignores `columns` and `masonry`. The dots follow the scroll position with a small listener in `gallery.js`; the first dot is active in the markup so it works before the script runs. Clicking an image still opens the lightbox.
+- **Profile-grid frame:** `{ type: "instagram-grid", handle, title? }` shows the same header (with `title` as a second line, e.g. a series name) above a tight square grid like a social profile, with no icons or dots. It uses `columns` (2 suits four images) and keeps that column count on phones.
 
 ## On portfolio pages
 

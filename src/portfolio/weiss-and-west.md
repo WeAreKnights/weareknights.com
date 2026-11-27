@@ -4,7 +4,7 @@ designer: tonya
 category: Branding
 order: 290
 images:
-  - portfolio/tonya/weiss-and-west-brand.jpg
+  - portfolio/tonya/weiss-and-west-logo.jpg
 credits:
   - role: Agency
     name: Octane Marketing
